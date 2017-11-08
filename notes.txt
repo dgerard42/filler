@@ -1,0 +1,36 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    notes.txt                                          :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: dgerard <marvin@42.fr>                     +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2017/11/07 18:25:31 by dgerard           #+#    #+#              #
+#    Updated: 2017/11/07 18:25:32 by dgerard          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+1 2
+1 3
+2 3
+int *piece
+first two numbers are total dimensions
+the rest are ones and zeroes in a map of the piece
+OR they are the distance to the next filled space
+
+_______________________QUESTIONS_________________________
+~ How do you place a piece on the board? What data type am I editing, where do I
+	put it
+~ The rules for piece placing
+
+_______________________KNOWN_____________________________
+~ Lowercase means that the a piece was just placed at that coordinate
+~ 0 is player 1
+~ you have to overlap the edge of the new piece with the old block
+~ you place a piece by having your program reprint the map!
+
+_______________________READER_____________________________
+~ Piece
+~ Player number / piece type
+~ Map
+~ map dimensions
