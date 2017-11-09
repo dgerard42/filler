@@ -18,8 +18,8 @@ void				watch_enemy(t_duel *duel, char *sight)
 	int	y;
 
 	y = 0;
-	while (!(ft_strstr(sight, "000")))
-		get_next_line(duel, &sight);
+	// while (!(ft_strstr(sight, "000")))
+		// get_next_line(duel->fd, &sight);
 	while (y < duel->arena_y)
 	{
 		x = 4;
@@ -37,18 +37,21 @@ void				watch_enemy(t_duel *duel, char *sight)
 			x++;
 		}
 		y++;
-		get_next_line(duel, &sight);
+		get_next_line(duel->fd, &sight);
 	}
 }
 
 void				observe_arena(t_duel *duel, char *sight)
 {
-	while (!(ft_isdigit(*sight++])))
-	duel->arena_x = ft_atoi(*sight);
-	while (ft_isdigit(*sight) || *sight++ == ' '))
+	while (!(ft_isdigit(*sight)))
+		sight++;
+	duel->arena_x = ft_atoi(sight);
+	while (ft_isdigit(*sight))
+		sight++;
+	sight++;
 	//do you need to make both ++ here, or only one?
-	duel->arena_y = ft_atoi(*sight);
-	duel->arena = ft_2dintarraynew(duel->arena_y, duel->arena_x);
+	duel->arena_y = ft_atoi(sight);
+	duel->arena = ft_2dintarray(duel->arena_y, duel->arena_x);
 	//make sure x & ys arent reversed
 	//you might have to reset the pointer at the end of this?
 	//maybe have a pseudo null termintor number, or use zero for that purpose?
@@ -63,18 +66,21 @@ void				learn_weapon(t_duel *duel, char *sight)
 	i = 2;
 	if (duel->weapon != NULL)
 		ft_memdel((void**)&sight);
-	while (!(ft_isdigit(*sight++)))
-	weapon_y = ft_atoi(*sight);
-	while (ft_isdigit(*sight) || *sight++ == ' '))
+	while (!(ft_isdigit(*sight)))
+		sight++;
+	weapon_y = ft_atoi(sight);
+	while (ft_isdigit(*sight))
+		sight++;
+	sight++;
 	//do you need to make both ++ here, or only one?
-	weapon_x = ft_atoi(*sight);
+	weapon_x = ft_atoi(sight);
 	//again, ya might have to reset sight here
 	duel->weapon = ft_intarraynew((weapon_x * weapon_y) + 2);
 	duel->weapon[0] = weapon_y;
 	duel->weapon[1]  = weapon_x;
 	while (weapon_y > 0)
 	{
-		get_next_line(0, &sight);
+		get_next_line(duel->fd, &sight);
 		while (*sight != '\0')
 			duel->weapon[i++] = (*sight == '*') ? 1 : 0;
 			//check i here for off by one
@@ -100,10 +106,10 @@ void				perceive(t_duel *duel, char *sight)
 {
  	if (duel->enemy != 'O' && duel->enemy != 'X' && ft_strstr(sight, "p1"))
 		acquire_target(duel, sight);
-	else if (duel->arena != NULL && ft_strstr(sight, "Plateau"))
-		watch_enemy(duel, sight);
-	else if (duel->arena == NULL && ft_strstr(sight, "Plateau"))
-		observe_arena(duel, sight);
 	else if (ft_strstr(sight, "Piece"))
 		learn_weapon(duel, sight);
+	else if (duel->arena == NULL && ft_strstr(sight, "Plateau"))
+		observe_arena(duel, sight);
+	else if (ft_strstr(sight, "000"))
+		watch_enemy(duel, sight);
 }

@@ -12,7 +12,7 @@
 
 # include "filler.h"
 
-void				check_perceptions(t_duel *duel)
+void				check_perceptions(t_duel *duel) //debug function
 {
 	int x;
 	int y;
@@ -20,22 +20,63 @@ void				check_perceptions(t_duel *duel)
 	x = 0;
 	y = 0;
 	ft_putstr("_______DEBUGGER OUTPUT:_______\n");
+	ft_printf("\nWARRIOR = %c, ENEMY = %c\n", duel->warrior, duel->enemy);
+	ft_putstr("ARENA:\n");
+	ft_printf("ARENA_X = %d, ARENA_Y = %d\n", duel->arena_x, duel->arena_y);
+	while (y < duel->arena_y)
+	{
+		while (x < duel->arena_x)
+		{
+			ft_putnbr(duel->arena[y][x]);
+			x++;
+		}
+		y++;
+		ft_putchar('\n');
+	}
 	ft_putstr("WEAPON:\n");
-	while ()
+	x = duel->weapon[0];
+	y = duel->weapon[1];
+	x = x * y;
+	y = 0;
+	while (y < x)
+	{
+		ft_putnbr(duel->weapon[y]);
+		y++;
+	}
 }
 
+int					read_test_file(void) //for early in development
+{
+	int fd;
+
+	fd = open("resources/test_outputs/output_0.txt", O_RDONLY);
+	ft_printf("file descriptor = %d\n", fd);
+	return(fd);
+}
+
+void				begin(t_duel *duel)
+{
+	duel->arena = NULL;
+	duel->weapon = NULL;
+}
 
 int					main(void)
 {
 	t_duel	duel;
 	char	*sight;
 
-	while (get_next_line(0, &sight) > 0)
+	sight = NULL;
+	duel.fd = read_test_file();
+	while (get_next_line(duel.fd, &sight) > 0)
 	{
+		ft_printf("next line = %s\n", sight);
+		begin(&duel);
 		perceive(&duel, sight);
-		check_perceptions(&duel);
 		// plan(&duel);
 		// attack(&duel);
 	}
+	check_perceptions(&duel);
 	ft_memdel((void**)&sight); //double check that you have to **& here
+	//free other shit from the struct here eventually
+	close(duel.fd); //again, rm at end
 }

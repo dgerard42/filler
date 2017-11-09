@@ -29,6 +29,9 @@ _______________________KNOWN_____________________________
 ~ 0 is player 1
 ~ you have to overlap the edge of the new piece with the old block
 ~ you place a piece by having your program reprint the map!
+~ ^^^ WRONG ^^^
+~ You actually have to print the intersection coordinate between old new piece,
+	in y, x format.
 
 _______________________READER_____________________________
 ~ Piece

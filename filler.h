@@ -14,6 +14,8 @@
 # define FILLER_H
 
 # include "libft/libft.h"
+# include "printf/ft_printf.h"
+# include <fcntl.h> //rm in the final version, using for open
 
 typedef struct		s_duel
 {
@@ -23,6 +25,7 @@ typedef struct		s_duel
 	int		*weapon;
 	char	warrior;
 	char	enemy;
+	int		fd;		//rm in the final version
 }					t_duel;
 
 void				perceive(t_duel *duel, char *sight);

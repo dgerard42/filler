@@ -12,16 +12,16 @@
 
 NAME = dgerard.filler
 
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra -g
 
 LIBFT = libft/libft.a\
 
-PRINTF = printf/libprintf.a\
+PRINTF = printf/libftprintf.a\
 
-SRCS = main.c\
-	   parser.c\
-	   placer.c\
-	   reader.c\
+SRCS =	main.c\
+		perceive.c\
+
+ODIR = ofiles
 
 OFILES = $(addprefix $(ODIR)/,$(SRCS:.c=.o))
 
@@ -36,13 +36,16 @@ $(ODIR)/%.o: %.c
 
 all: $(NAME)
 
-$(NAME): $(OFILES) $(FLAGS)
+$(NAME): $(OFILES)
 	@make -C libft/
 	@make -C printf/
 	@gcc $(FLAGS) -o $@ $(OFILES) $(LIBFT) $(PRINTF)
 	@echo "\033[32m[filler created ( ͡° ͜ʖ ͡°)]\033[0m"
 
 $(OFILES): | $(ODIR)
+
+$(ODIR):
+	@mkdir $(ODIR)
 
 clean:
 	@make -C libft/ clean
