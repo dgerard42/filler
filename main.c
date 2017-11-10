@@ -17,7 +17,6 @@ void				check_perceptions(t_duel *duel) //debug function
 	int x;
 	int y;
 
-	x = 0;
 	y = 0;
 	ft_putstr("_______DEBUGGER OUTPUT:_______\n");
 	ft_printf("\nWARRIOR = %c, ENEMY = %c\n", duel->warrior, duel->enemy);
@@ -25,6 +24,7 @@ void				check_perceptions(t_duel *duel) //debug function
 	ft_printf("ARENA_X = %d, ARENA_Y = %d\n", duel->arena_x, duel->arena_y);
 	while (y < duel->arena_y)
 	{
+		x = 0;
 		while (x < duel->arena_x)
 		{
 			ft_putnbr(duel->arena[y][x]);
@@ -36,7 +36,7 @@ void				check_perceptions(t_duel *duel) //debug function
 	ft_putstr("WEAPON:\n");
 	x = duel->weapon[0];
 	y = duel->weapon[1];
-	x = x * y;
+	x = (x * y) + 2;
 	y = 0;
 	while (y < x)
 	{
@@ -49,8 +49,7 @@ int					read_test_file(void) //for early in development
 {
 	int fd;
 
-	fd = open("resources/test_outputs/output_0.txt", O_RDONLY);
-	ft_printf("file descriptor = %d\n", fd);
+	fd = open("resources/test_outputs/output_1.txt", O_RDONLY);
 	return(fd);
 }
 
@@ -67,10 +66,9 @@ int					main(void)
 
 	sight = NULL;
 	duel.fd = read_test_file();
+	begin(&duel); //might be unnessary later, try w/o
 	while (get_next_line(duel.fd, &sight) > 0)
 	{
-		ft_printf("next line = %s\n", sight);
-		begin(&duel);
 		perceive(&duel, sight);
 		// plan(&duel);
 		// attack(&duel);

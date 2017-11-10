@@ -18,26 +18,26 @@ void				watch_enemy(t_duel *duel, char *sight)
 	int	y;
 
 	y = 0;
-	// while (!(ft_strstr(sight, "000")))
-		// get_next_line(duel->fd, &sight);
+	// get_next_line(duel->fd, &sight);
 	while (y < duel->arena_y)
 	{
-		x = 4;
+		x = 0;
 		while (x < duel->arena_x)
 		{
-			if (sight[x] == '.')
+			if (sight[x + 4] == '.')
 				duel->arena[y][x] = 0;
-			else if (sight[x] == duel->enemy)
+			else if (sight[x + 4] == duel->enemy)
 				duel->arena[y][x] = -1;
-			else if (sight[x] == ft_tolower(duel->enemy))
+			else if (sight[x + 4] == ft_tolower(duel->enemy))
 				duel->arena[y][x] = -2;
-			else if (sight[x] == duel->warrior || ft_tolower(duel->warrior))
+			else if (sight[x + 4] == duel->warrior || ft_tolower(duel->warrior))
 				duel->arena[y][x] = 1;
 			//make these elifs more or less detailed depending on what your algorithim eventually needs
 			x++;
 		}
 		y++;
-		get_next_line(duel->fd, &sight);
+		if (y < duel->arena_y)
+			get_next_line(duel->fd, &sight);
 	}
 }
 
@@ -45,12 +45,12 @@ void				observe_arena(t_duel *duel, char *sight)
 {
 	while (!(ft_isdigit(*sight)))
 		sight++;
-	duel->arena_x = ft_atoi(sight);
+	duel->arena_y = ft_atoi(sight);
 	while (ft_isdigit(*sight))
 		sight++;
 	sight++;
 	//do you need to make both ++ here, or only one?
-	duel->arena_y = ft_atoi(sight);
+	duel->arena_x = ft_atoi(sight);
 	duel->arena = ft_2dintarray(duel->arena_y, duel->arena_x);
 	//make sure x & ys arent reversed
 	//you might have to reset the pointer at the end of this?
@@ -65,7 +65,7 @@ void				learn_weapon(t_duel *duel, char *sight)
 
 	i = 2;
 	if (duel->weapon != NULL)
-		ft_memdel((void**)&sight);
+		ft_memdel((void**)&duel->weapon);
 	while (!(ft_isdigit(*sight)))
 		sight++;
 	weapon_y = ft_atoi(sight);
@@ -77,12 +77,17 @@ void				learn_weapon(t_duel *duel, char *sight)
 	//again, ya might have to reset sight here
 	duel->weapon = ft_intarraynew((weapon_x * weapon_y) + 2);
 	duel->weapon[0] = weapon_y;
-	duel->weapon[1]  = weapon_x;
+	duel->weapon[1] = weapon_x;
 	while (weapon_y > 0)
 	{
 		get_next_line(duel->fd, &sight);
 		while (*sight != '\0')
-			duel->weapon[i++] = (*sight == '*') ? 1 : 0;
+		{
+			duel->weapon[i] = (*sight == '*') ? 1 : 0;
+			i++;
+			sight++;
+			//compact here when working
+		}
 			//check i here for off by one
 		weapon_y--;
 	}

@@ -1,0 +1,71 @@
+# -------------- VM  version 1.1 ------------- #
+#                                              #
+# 42 / filler VM Developped by: Hcao - Abanlin #
+#                                              #
+# -------------------------------------------- #
+launched resources/players/dgerard.filler
+$$$ exec p1 : [resources/players/dgerard.filler]
+launched resources/players/hcao.filler
+$$$ exec p2 : [resources/players/carli.filler]
+Plateau 24 40:
+    0123456789012345678901234567890123456789
+000 ........................OOOOO....OOOOOOO
+001 ...........O...OOOOOOOOOO.OOOO...OOOOOOO
+002 ..........OOOOOOOOO..OOO....O.OOOOOOOOOO
+003 ...OOOOOOOOOO..O..O.............OOOOOOOO
+004 .......OO......O..O..........oooooOOOOOO
+005 ........O.........O............OOOOOOOOO
+006 ........O.....................OOOOOOOOOO
+007 ........O........................OOOOOOO
+008 ........O........................OOOOOOO
+009 .........O.....................OOOOOOOOO
+010 .........OO.....................OOOOOOOO
+011 ..........OOO...................O.OOOOOO
+012 ............OOO.................OOOOOOOO
+013 .............OOO................OOOOOOOO
+014 ...............O.................OOOOOOO
+015 ...............OO................OOOOOOO
+016 ................OO...............OOOOOOO
+017 .................O...............OOOOOOO
+018 ................OO...............OOOOOOO
+019 ........OOO....OOO..............X.OOOOOO
+020 ..OOOO.OOOO..OOOOOOO.OOOOOOOOOOOOOOOOOOO
+021 OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+022 OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+023 OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+Piece 3 3:
+..*
+..*
+..*
+<got (O): [19, 18]
+Plateau 24 40:
+    0123456789012345678901234567890123456789
+000 ........................OOOOO....OOOOOOO
+001 ...........O...OOOOOOOOOO.OOOO...OOOOOOO
+002 ..........OOOOOOOOO..OOO....O.OOOOOOOOOO
+003 ...OOOOOOOOOO..O..O.............OOOOOOOO
+004 .......OO......O..O..........OOOOOOOOOOO
+005 ........O.........O............OOOOOOOOO
+006 ........O.....................OOOOOOOOOO
+007 ........O........................OOOOOOO
+008 ........O........................OOOOOOO
+009 .........O.....................OOOOOOOOO
+010 .........OO.....................OOOOOOOO
+011 ..........OOO...................O.OOOOOO
+012 ............OOO.................OOOOOOOO
+013 .............OOO................OOOOOOOO
+014 ...............O.................OOOOOOO
+015 ...............OO................OOOOOOO
+016 ................OO...............OOOOOOO
+017 .................O...............OOOOOOO
+018 ................OO...............OOOOOOO
+019 ........OOO....OOO..o...........X.OOOOOO
+020 ..OOOO.OOOO..OOOOOOOoOOOOOOOOOOOOOOOOOOO
+021 OOOOOOOOOOOOOOOOOOOOoOOOOOOOOOOOOOOOOOOO
+022 OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+023 OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+Piece 4 6:
+.....*
+....**
+......
+......
