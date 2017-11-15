@@ -23,6 +23,7 @@ _______________________QUESTIONS_________________________
 ~ How do you place a piece on the board? What data type am I editing, where do I
 	put it
 ~ The rules for piece placing
+~ How will I know when it is my turn and when it is not?
 
 _______________________KNOWN_____________________________
 ~ Lowercase means that the a piece was just placed at that coordinate
@@ -42,3 +43,20 @@ _______________________READER_____________________________
 _______________________PROBLEMS___________________________
 ~ make sure that you don't read your own output? if that's a possible error
 ~ and don't bother with the other player's pieces
+
+_______________________ALGORITHM___________________________
+~ If there is more space above grow above
+~ If there is more space below grow down
+	>> test taking the initial enemy position into consideration
+	>> Also test a perfect middle start
+~ one level = placing two in branch direction, then two up no matter the size or shape
+	>> edit the amount of pieces to go in each direction depending on results
+~ add together the last two numbers in the sequence to get the right number of
+	branches (fibonacci)
+~ have a linked list "node" at each branch
+~ depending on the enemy's closeness to each node, invest in those areas first.
+~ traverse through nodes and check enemy distance to all
+~ when a branch gap is "closed off" against a wall, fill in at the end
+~ when a branch gap has the enemy in it, work on closing it off
+~ keep the nodes for reference
+~ always branch on the side that is closet to the enemy

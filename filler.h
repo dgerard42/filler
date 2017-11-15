@@ -25,9 +25,12 @@ typedef struct		s_duel
 	int		*weapon;
 	char	warrior;
 	char	enemy;
+	int		*move;
+	bool	turn;
 	int		fd;		//rm in the final version
 }					t_duel;
 
 void				perceive(t_duel *duel, char *sight);
+void				plan(t_duel *duel);
 
 #endif

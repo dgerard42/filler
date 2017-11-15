@@ -73,7 +73,7 @@ int					main(void)
 		// plan(&duel);
 		// attack(&duel);
 	}
-	check_perceptions(&duel);
+	// check_perceptions(&duel);
 	ft_memdel((void**)&sight); //double check that you have to **& here
 	//free other shit from the struct here eventually
 	close(duel.fd); //again, rm at end
