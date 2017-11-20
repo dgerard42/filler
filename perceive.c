@@ -57,13 +57,45 @@ void				observe_arena(t_duel *duel, char *sight)
 	//maybe have a pseudo null termintor number, or use zero for that purpose?
 }
 
+
+void				sharpen_weapon(t_duel *duel, int x_y)
+{
+	
+}
+
+void				inspect_weapon(t_duel *duel)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	// if a row is all zeroes move all up and -1 it up
+	while (x < duel->weapon[0][1])
+	{
+		y = 1;
+		while (duel->weapon[y][x] == 0 && y < duel->weapon[0][0])
+			y++
+		if (duel->weapon[y][x] == 0 && y == duel->weapon[0][0])
+			sharpen_weapon(duel, 0);
+		x++;
+	}
+	y = 1;
+	while (y < duel->weapon[0][0])
+	{
+		x = 0;
+		while (duel->weapon[y][x] == 0 && x < duel->weapon[0][1])
+			x++;
+		if (duel->weapon[y][x] == 0 && y == duel->weapon[0][0])
+			sharpen_weapon(duel, 1);
+		y++;
+	}
+}
+
 void				learn_weapon(t_duel *duel, char *sight)
 {
 	int	weapon_x;
 	int	weapon_y;
-	int	i;
 
-	i = 2;
 	if (duel->weapon != NULL)
 		ft_memdel((void**)&duel->weapon);
 	while (!(ft_isdigit(*sight)))
@@ -75,21 +107,22 @@ void				learn_weapon(t_duel *duel, char *sight)
 	//do you need to make both ++ here, or only one?
 	weapon_x = ft_atoi(sight);
 	//again, ya might have to reset sight here
-	duel->weapon = ft_intarraynew((weapon_x * weapon_y) + 2);
-	duel->weapon[0] = weapon_y;
-	duel->weapon[1] = weapon_x;
-	while (weapon_y > 0)
+	duel->weapon = ft_2dintarray(weapon_y + 1, weapon_x);
+	duel->weapon[0][0] = weapon_y;
+	duel->weapon[0][1] = weapon_x;
+	weapon_y = 1;
+	while (weapon_y < duel->weapon[0][0])
 	{
+		weapon_x = 0;
 		get_next_line(duel->fd, &sight);
-		while (*sight != '\0')
+		while (weapon_x < duel->weapon[0][1])
 		{
-			duel->weapon[i] = (*sight == '*') ? 1 : 0;
-			i++;
+			duel->weapon[weapon_y][weapon_x] = (*sight == '*') ? 1 : 0;
+			weapon_x++;
 			sight++;
 			//compact here when working
 		}
-			//check i here for off by one
-		weapon_y--;
+		weapon_y++;
 	}
 }
 
@@ -112,7 +145,10 @@ void				perceive(t_duel *duel, char *sight)
  	if (duel->enemy != 'O' && duel->enemy != 'X' && ft_strstr(sight, "p1"))
 		acquire_target(duel, sight);
 	else if (ft_strstr(sight, "Piece"))
+	{
 		learn_weapon(duel, sight);
+		// inspect_weapon(duel);
+	}
 	else if (duel->arena == NULL && ft_strstr(sight, "Plateau"))
 		observe_arena(duel, sight);
 	else if (ft_strstr(sight, "000"))

@@ -34,14 +34,17 @@ void				check_perceptions(t_duel *duel) //debug function
 		ft_putchar('\n');
 	}
 	ft_putstr("WEAPON:\n");
-	x = duel->weapon[0];
-	y = duel->weapon[1];
-	x = (x * y) + 2;
 	y = 0;
-	while (y < x)
+	while (y < (duel->weapon[0][0] + 1))
 	{
-		ft_putnbr(duel->weapon[y]);
+		x = 0;
+		while (x < duel->weapon[0][1])
+		{
+			ft_putnbr(duel->weapon[y][x]);
+			x++;
+		}
 		y++;
+		ft_putchar('\n');
 	}
 }
 
@@ -73,7 +76,7 @@ int					main(void)
 		// plan(&duel);
 		// attack(&duel);
 	}
-	// check_perceptions(&duel);
+	check_perceptions(&duel);
 	ft_memdel((void**)&sight); //double check that you have to **& here
 	//free other shit from the struct here eventually
 	close(duel.fd); //again, rm at end

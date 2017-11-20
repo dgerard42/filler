@@ -22,7 +22,7 @@ typedef struct		s_duel
 	int		**arena;
 	int		arena_x;
 	int		arena_y;
-	int		*weapon;
+	int		**weapon;
 	char	warrior;
 	char	enemy;
 	int		*move;
