@@ -58,9 +58,23 @@ void				observe_arena(t_duel *duel, char *sight)
 }
 
 
-void				sharpen_weapon(t_duel *duel, int x_y)
+void				sharpen_weapon(t_duel *duel, int x_y, int iterator)
 {
-	
+	if (x_y == 0)
+	{
+		if (iterator > 0)
+		{
+			duel->weapon[y][iterator] = duel->weapon[y][iterator + 1];
+		}
+		
+	}
+	else if (x_y == 1)
+	{
+		if (iterator > 1)
+		{
+
+		}
+	}
 }
 
 void				inspect_weapon(t_duel *duel)
@@ -76,7 +90,7 @@ void				inspect_weapon(t_duel *duel)
 		while (duel->weapon[y][x] == 0 && y < duel->weapon[0][0])
 			y++
 		if (duel->weapon[y][x] == 0 && y == duel->weapon[0][0])
-			sharpen_weapon(duel, 0);
+			sharpen_weapon(duel, 0, x);
 		x++;
 	}
 	y = 1;
@@ -85,8 +99,8 @@ void				inspect_weapon(t_duel *duel)
 		x = 0;
 		while (duel->weapon[y][x] == 0 && x < duel->weapon[0][1])
 			x++;
-		if (duel->weapon[y][x] == 0 && y == duel->weapon[0][0])
-			sharpen_weapon(duel, 1);
+		if (duel->weapon[y][x] == 0 && x == duel->weapon[0][1])
+			sharpen_weapon(duel, 1, y);
 		y++;
 	}
 }

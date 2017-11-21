@@ -47,6 +47,7 @@ _______________________PROBLEMS___________________________
 ~ when the parser reads and saves the piece, make sure it cuts out all the
 	unnecessary shit
 	>> have it look at rows and columns and remove them if empty
+	>>
 
 _______________________ALGORITHM___________________________
 ~ If there is more space above grow above
