@@ -27,11 +27,11 @@ void				watch_enemy(t_duel *duel, char *sight)
 			if (sight[x + 4] == '.')
 				duel->arena[y][x] = 0;
 			else if (sight[x + 4] == duel->enemy)
-				duel->arena[y][x] = -1;
-			else if (sight[x + 4] == ft_tolower(duel->enemy))
 				duel->arena[y][x] = -2;
+			else if (sight[x + 4] == ft_tolower(duel->enemy))
+				duel->arena[y][x] = -3;
 			else if (sight[x + 4] == duel->warrior || ft_tolower(duel->warrior))
-				duel->arena[y][x] = 1;
+				duel->arena[y][x] = -1;
 			//make these elifs more or less detailed depending on what your algorithim eventually needs
 			x++;
 		}
@@ -66,7 +66,7 @@ void				sharpen_weapon(t_duel *duel, int x_y, int iterator)
 		{
 			duel->weapon[y][iterator] = duel->weapon[y][iterator + 1];
 		}
-		
+
 	}
 	else if (x_y == 1)
 	{

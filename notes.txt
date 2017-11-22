@@ -73,3 +73,10 @@ ___________________SIMPLE ALGORITHM_________________________
 ~ place piece wherever the number is lowest. If there are many of the same
 	numbers, then favor the most central. If no dead center, then center left
 ~ if
+
+___________________________MAP KEY___________________________
+~ open spaces are positive numbers, calculated reward based on algorithm
+~ taken by me already is -1
+~ taken by the opponent is -2
+~ recently taken by opponent is -3
+~ calibration value before reward calculation is 0

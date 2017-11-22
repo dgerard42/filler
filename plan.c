@@ -14,7 +14,7 @@
 
 void				piece_fits(t_duel *duel, int start_x, int start_y)
 {
-	
+
 }
 
 void				assess_weaknesses(t_duel *duel, int start_x, int start_y)
@@ -39,7 +39,7 @@ void				scan_enemy(t_duel *duel)
 		x = 0;
 		while (x > duel->arena_x)
 		{
-			if (arena[y][x] == 1 && piece_fits(duel, y, x))
+			if (arena[y][x] == 1)
 				assess_weaknesses(duel, x, y);
 			x++;
 		}
