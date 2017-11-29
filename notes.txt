@@ -49,7 +49,7 @@ _______________________PROBLEMS___________________________
 	>> have it look at rows and columns and remove them if empty
 	>>
 
-_______________________ALGORITHM___________________________
+_______________________SLIME MOLD ALGORITHM_____________________
 ~ If there is more space above grow above
 ~ If there is more space below grow down
 	>> test taking the initial enemy position into consideration
@@ -66,17 +66,26 @@ _______________________ALGORITHM___________________________
 ~ keep the nodes for reference
 ~ always branch on the side that is closet to the enemy
 
-___________________SIMPLE ALGORITHM_________________________
+___________________HEAT MAP ALGORITHM_________________________
 ~ for each edge coordinate of mine, calculate how far it is to the next enemy piece
 ~ attach a number to each edge coordinate. the number is how many steps you must
 	move in a circle to reach the next enemy Piece
 ~ place piece wherever the number is lowest. If there are many of the same
 	numbers, then favor the most central. If no dead center, then center left
-~ if
+~ calculate distance to next enemy piece in lateral and diagonal directions
+~ put those numbers into the risk int array
+	>> 0 - straight up (north)
+	>> 1 - NE
+	>> 2 - E
+	>> 3 - SE
+	>> 4 - S
+	>> 5 - SW
+	>> 6 - W
+	>> 7 - NW
 
 ___________________________MAP KEY___________________________
 ~ open spaces are positive numbers, calculated reward based on algorithm
-~ taken by me already is -1
+~ taken by me already is -42 (adjust this number, may too heavily favor outward growth)
 ~ taken by the opponent is -2
-~ recently taken by opponent is -3
+~ recently taken by opponent is -1
 ~ calibration value before reward calculation is 0

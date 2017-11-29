@@ -27,6 +27,7 @@ typedef struct		s_duel
 	char	enemy;
 	int		*move;
 	bool	turn;
+	int		*risk; //initialize at -1 for all numbers b/c 0 can be valid value
 	int		fd;		//rm in the final version
 }					t_duel;
 
