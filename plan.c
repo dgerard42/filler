@@ -14,19 +14,32 @@
 
 void				piece_fits(t_duel *duel, int start_x, int start_y)
 {
+	int	x;
+	int	y;
 
+	int *anchor;
+	while (y )
 }
 
-void				assess_weaknesses(t_duel *duel, int start_x, int start_y)
+void				traverse_weapon(t_duel *duel, int start_x, int start_y)
 {
 	int		x;
 	int		y;
 
-	while ()
+	y = 1;
+	while (y < duel->weapon[0][0])
 	{
-
+		x = 0;
+		while (x < duel->weapon[0][1])
+		{
+			if (duel->y)
+			x++;
+		}
+		y++;
 	}
 }
+
+void				assess_weaknesses(t_duel *duel, int start_x, int start_y)
 
 void				scan_enemy(t_duel *duel)
 {
