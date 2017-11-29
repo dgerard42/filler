@@ -48,6 +48,8 @@ _______________________PROBLEMS___________________________
 	unnecessary shit
 	>> have it look at rows and columns and remove them if empty
 	>>
+~ restructure for efficiency. have fewer base fts that only call others consolidate
+	to a lower level
 
 _______________________SLIME MOLD ALGORITHM_____________________
 ~ If there is more space above grow above
