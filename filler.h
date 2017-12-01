@@ -17,6 +17,9 @@
 # include "printf/ft_printf.h"
 # include <fcntl.h> //rm in the final version, using for open
 
+//# define MINE_ADJA		duel->arena[y][x + 1] == -42 || duel->arena[y + 1][x] == -42 ||
+//	duel->arena[y][x - 1] == -42 || duel->arena[y - 1][x] == -42
+
 typedef struct		s_duel
 {
 	int		**arena;
@@ -25,9 +28,9 @@ typedef struct		s_duel
 	int		**weapon;
 	char	warrior;
 	char	enemy;
-	int		*move;
+	int		*move;, //3 ints, x, y, and score
 	bool	turn;
-	int		*risk; //initialize at -1 for all numbers b/c 0 can be valid value
+	int		*risk; //initialize at -1 for all numbers b/c 0 can be valid value, 7 ints
 	int		fd;		//rm in the final version
 }					t_duel;
 

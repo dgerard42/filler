@@ -84,7 +84,13 @@ ___________________HEAT MAP ALGORITHM_________________________
 	>> 5 - SW
 	>> 6 - W
 	>> 7 - NW
-
+~ improvement if necessary: make the numbers change based on adjacent numbers
+~ if the first 1 of the weapon is placed at x,y will it fit?
+	>> traverse through both arrays simultaneously
+	>> if the map goes past the parameters DO NOT check
+	>> so instead, just keep going through the weapon, and if there is a 1 before
+		you return to the in map zone, then NO fit
+	>> else, you're good, it still fits
 ___________________________MAP KEY___________________________
 ~ open spaces are positive numbers, calculated reward based on algorithm
 ~ taken by me already is -42 (adjust this number, may too heavily favor outward growth)
