@@ -145,7 +145,9 @@ void				learn_weapon(t_duel *duel, char *sight)
 {
 	int	weapon_x;
 	int	weapon_y;
+	int	pieces;
 
+	pieces = 0;
 	if (duel->weapon != NULL)
 		ft_memdel((void**)&duel->weapon);
 	while (!(ft_isdigit(*sight)))
@@ -168,12 +170,14 @@ void				learn_weapon(t_duel *duel, char *sight)
 		while (weapon_x < duel->weapon[0][1])
 		{
 			duel->weapon[weapon_y][weapon_x] = (*sight == '*') ? 1 : 0;
+			pieces = (duel->weapon[weapon_y][weapon_x] == 1) ? pieces + 1 : pieces;
 			weapon_x++;
 			sight++;
 			//compact here when working
 		}
 		weapon_y++;
 	}
+	duel->weapon[0][2] = pieces;
 }
 
 void				acquire_target(t_duel *duel, char *sight)

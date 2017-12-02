@@ -12,7 +12,7 @@
 
 # include "filler.h"
 
-void				traverse_weapon(t_duel *duel, int start_x, int start_y)
+void				check_shape(t_duel *duel, int start_x, int start_y) //return the increase in y, and x, until the next 1?
 {
 	int		x;
 	int		y;
@@ -36,7 +36,18 @@ int					weapon_fits(t_duel *duel, int start_x, int start_y) //ret 0 if no fit, e
 	int	y;
 	int	anchor_score;
 
-	while (y )
+	y = 1;
+	while (y < duel->weapon[0][0])
+	{
+		x = 0;
+		while (x < duel->weapon[0][1])
+		{
+			if (duel->weapon[y][x] == 1)
+
+			x++;
+		}
+		y++;
+	}
 }
 
 void				find_opening()//look for a -42 anchor spot with the highest score
@@ -54,7 +65,7 @@ void				find_opening()//look for a -42 anchor spot with the highest score
 			if (duel->arena[y][x] == -42 && (duel->arena[y][x + 1] > -1 ||
 					duel->arena[y][x - 1] > -1 || duel->arena[y - 1][x] > -1 ||
 						duel->arena[y + 1][x] > -1)) //check for immediate openings here to avoid time waste
-				if (duel->move > anchor_score = weapon_fits())
+				if (duel->move > anchor_score = weapon_fits(duel, x, y) && anchor_score != 0) //make sure you can call weapon_fits in this way
 				{
 					duel->move[0] = x;
 					duel->move[1] = y;
@@ -65,8 +76,8 @@ void				find_opening()//look for a -42 anchor spot with the highest score
 		y++;
 	}
 }
-}
 
+//VVVV compress this shit. Eventually. VVVVV
 void				assess_weaknesses(t_duel *duel, int start_x, int start_y) //assign the correct number to the map spot
 {
 	int		x;
