@@ -12,22 +12,20 @@
 
 # include "filler.h"
 
-void				check_shape(t_duel *duel, int start_x, int start_y) //return the increase in y, and x, until the next 1?
+int				check_shape(t_duel *duel, int weap_x, int weap_y, int x, int y) //return the increase in y, and x, until the next 1?
 {
-	int		x;
-	int		y;
-
-	y = 1;
 	while (y < duel->weapon[0][0])
 	{
 		x = 0;
 		while (x < duel->weapon[0][1])
 		{
 			if (duel->weapon[y][x] == 1)
+
 			x++;
 		}
 		y++;
 	}
+	return(anchor_score);
 }
 
 int					weapon_fits(t_duel *duel, int start_x, int start_y) //ret 0 if no fit, else return anchr score
@@ -43,11 +41,19 @@ int					weapon_fits(t_duel *duel, int start_x, int start_y) //ret 0 if no fit, e
 		while (x < duel->weapon[0][1])
 		{
 			if (duel->weapon[y][x] == 1)
-
+			{
+				anchor_score = check_shape();
+				if (anchor_score != 0)
+				{
+					move[0] = x;
+					move[1] = y;
+				}
+			}
 			x++;
 		}
 		y++;
 	}
+	return (anchor_score);
 }
 
 void				find_opening()//look for a -42 anchor spot with the highest score
