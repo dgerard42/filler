@@ -50,6 +50,7 @@ _______________________PROBLEMS___________________________
 	>>
 ~ restructure for efficiency. have fewer base fts that only call others consolidate
 	to a lower level
+~ ma
 
 _______________________SLIME MOLD ALGORITHM_____________________
 ~ If there is more space above grow above
@@ -94,7 +95,7 @@ ___________________HEAT MAP ALGORITHM_________________________
 		>> add the heat map numbers of each space positively checked to the
 			anchor score
 		>> if no match on any of the other 1s, then return 0
-	>> then continue in the weapon_fits loop fir the next 
+	>> then continue in the weapon_fits loop fir the next
 
 ___________________________MAP KEY___________________________
 ~ open spaces are positive numbers, calculated reward based on algorithm

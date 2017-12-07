@@ -34,6 +34,15 @@ typedef struct		s_duel
 	int		fd;		//rm in the final version
 }					t_duel;
 
+typedef	struct		s_move
+{
+	int		map_x;
+	int		map_y;
+	int		weapon_x;
+	int		weapon_y;
+	int		ones;
+}					t_move;
+
 void				perceive(t_duel *duel, char *sight);
 void				plan(t_duel *duel);
 
