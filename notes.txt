@@ -87,10 +87,11 @@ ___________________HEAT MAP ALGORITHM_________________________
 	>> 7 - NW
 ~ improvement if necessary: make the numbers change based on adjacent numbers
 ~ piece fits
-	>> send the anchor coordinates to the check piece ft
-	>> increment until the first 1
-	>> check all other ones for fit in check_shape
-		>>iterate though all other ones in the map (3rd number, 1st row)
+	>> send the anchor coordinates to the check piece ft (a section on the edge
+		of my territory)
+	>> increment the weapon until the first 1 of the weapon
+	>> check all other weapon 1s for fit in check_shape
+		>>iterate though all other ones in the weapon (3rd number, 1st row)
 		>> check all for a fit
 		>> add the heat map numbers of each space positively checked to the
 			anchor score

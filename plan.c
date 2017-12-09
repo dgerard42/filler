@@ -12,44 +12,35 @@
 
 # include "filler.h"
 
-int				check_shape(t_duel *duel, t_move *move) //return the increase in y, and x, until the next 1?
+int				check_shape(t_duel *duel, t_move *move)
 {
 	int		anchor_score;
 	bool	reset;
 
 	anchor_score = 0;
 	reset = false;
-	while (move->ones < duel->weapon[0][2]) //duel->weapon[0][2] == total ones in piece
+	while (move->ones < duel->weapon[0][2])
 	{
 		if (reset == true)
-			move->weapon_y = 0;
-		while (move->weapon_y < duel->weapon[0][0] && ones < duel->weapon[0][2])
+			move->weapon_y = 1;
+		while (move->weapon_y < duel->weapon[0][0] && move->ones < duel->weapon[0][2])
 		{
 			if (reset == true)
+				move->weapon_x = 0;
+			while (move->weapon_x < duel->weapon[0][1] && move->ones < duel->weapon[0][2])
 			{
-				move->map_x = 0;
-				move->weap_x = 0;
-			}
-			while (x < duel->weapon[0][1] && ones < duel->weapon[0][2])
-			{
-				if (duel->weapon[y][x] == 1)
-				{
-					if (map_x < duel->areana_x && map_x > 0 && map_y < duel->arena_y && map_y > 0 )
-					{
-						if (duel->arena[y][x] > -1)
-							anchor_score += duel->arena[y][x];
-						else
-							return (0);
-					}
+				if (duel->weapon[move->weapon_y][move->weapon_x] == 1)
+				{//might not need these brackets
+					if (corresponding map spot is open)
+						add score of map to anchor_score;
 					else
 						return (0);
-					ones++;
+					move->ones++;
 				}
-				map_x++;
-				weap_x++;
+				move->weapon_x++;
+				reset = true;
 			}
-			map_y++;
-			y++;
+			move->weapon_y++;
 		}
 	}
 	return(anchor_score);
@@ -70,12 +61,12 @@ int					weapon_fits(t_duel *duel, int map_x, int map_y) //ret 0 if no fit, else 
 		{
 			if (duel->weapon[y][x] == 1)
 			{
-				move->weapon_x = x; //first 1 piece anchor enter into struct
+				move->weapon_x = x;
 				move->weapon_y = y;
 				move->map_x = map_x;
-				move->map_y = map_y; //enter map spot where ones anchor goes
-				anchor_score = check_shape(duel, move);
-				if (anchor_score != 0)
+				move->map_y = map_y;
+				move->ones = 0;
+				if ((anchor_score = check_shape(duel, move)) != 0)
 					return (anchor_score);
 			}
 			x++;
@@ -85,7 +76,7 @@ int					weapon_fits(t_duel *duel, int map_x, int map_y) //ret 0 if no fit, else 
 	return (0);
 }
 
-void				find_opening()//look for a -42 anchor spot with the highest score
+void				find_opening(t_duel *duel)
 {
 	int		y;
 	int		x;
@@ -99,9 +90,9 @@ void				find_opening()//look for a -42 anchor spot with the highest score
 		{
 			if (duel->arena[y][x] == -42 && (duel->arena[y][x + 1] > -1 ||
 					duel->arena[y][x - 1] > -1 || duel->arena[y - 1][x] > -1 ||
-						duel->arena[y + 1][x] > -1)) //check for immediate openings here to avoid time waste
-				if (anchor_score = weapon_fits(duel, x, y) != 0 && duel->move[2] > anchor_score) //make sure you can call weapon_fits in this way
-					duel->move[2] = anchor_score; //put coords of top left of piece for map into duel struct, move int array
+						duel->arena[y + 1][x] > -1))
+				if ((anchor_score = weapon_fits(duel, x, y)) != 0 && duel->move[2] > anchor_score)
+					duel->move[2] = anchor_score;
 			x++;
 		}
 		y++;
