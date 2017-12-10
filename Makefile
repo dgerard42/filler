@@ -39,10 +39,11 @@ $(ODIR)/%.o: %.c
 all: $(NAME)
 
 $(NAME): $(OFILES)
+	@echo "\033[32m[filler .o files created ( ͡° ͜ʖ ͡°)]\033[0m"
 	@make -C libft/
 	@make -C printf/
 	@gcc $(FLAGS) -o $@ $(OFILES) $(LIBFT) $(PRINTF)
-	@echo "\033[32m[filler created ( ͡° ͜ʖ ͡°)]\033[0m"
+	@echo "\033[32m[filler executable created ( ͡° ͜ʖ ͡°)]\033[0m"
 
 $(OFILES): | $(ODIR)
 

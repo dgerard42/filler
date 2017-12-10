@@ -97,6 +97,12 @@ ___________________HEAT MAP ALGORITHM_________________________
 		>> if no match on any of the other 1s, then return 0
 	>> then continue in the weapon_fits loop fir the next
 
+___________________READING LOOP STRUCTURE______________________
+~ From main, call perceive and continue reading lines until you've learned all
+	the info that you need to learn about the environment.
+		>>initialize all the struct elements to 0
+~ Once you
+
 ___________________________MAP KEY___________________________
 ~ open spaces are positive numbers, calculated reward based on algorithm
 ~ taken by me already is -42 (adjust this number, may too heavily favor outward growth)

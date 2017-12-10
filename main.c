@@ -28,6 +28,7 @@ void				check_perceptions(t_duel *duel) //debug function
 		while (x < duel->arena_x)
 		{
 			ft_putnbr(duel->arena[y][x]);
+			ft_putchar(',');
 			x++;
 		}
 		y++;
@@ -35,7 +36,7 @@ void				check_perceptions(t_duel *duel) //debug function
 	}
 	ft_putstr("WEAPON:\n");
 	y = 0;
-	while (y < (duel->weapon[0][0] + 1))
+	while (y < duel->weapon[0][0])
 	{
 		x = 0;
 		while (x < duel->weapon[0][1])
@@ -52,7 +53,7 @@ int					read_test_file(void) //for early in development
 {
 	int fd;
 
-	fd = open("resources/test_outputs/output_1.txt", O_RDONLY);
+	fd = open("resources/test_outputs/output_0.txt", O_RDONLY);
 	return(fd);
 }
 
@@ -73,14 +74,12 @@ int					main(void)
 	duel.fd = read_test_file();
 	begin(&duel); //might be unnessary later, try w/o
 	while (get_next_line(duel.fd, &sight) > 0)
-	{
 		perceive(&duel, sight);
-		plan(&duel);
-		attack(&duel);
-	}
+	plan(&duel);
+	attack(&duel);
 	check_perceptions(&duel);
 	ft_memdel((void**)&sight); //double check that you have to **& here
-	// ft_memdel(arena);
+	// ft_memdel(arena); //clear it all out here
 	// ft_memdel(weapon);
 	// ft_memdel(move);
 	// ft_memdel(risk);

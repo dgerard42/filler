@@ -49,7 +49,7 @@ int				check_shape(t_duel *duel, t_move *move) //cycle through the rest of the p
 			{
 				if (duel->weapon[y][x] == 1)
 				{
-					if ((anchor_inc = check_fit(duel, move, move->weapon_x - x, move->weapon_y - y)) != 0)
+					if ((anchor_inc = check_fit(duel, move, move->weapon_x - x, move->weapon_y - (y - 1))) != 0)
 						anchor_score += anchor_inc;
 					else
 						return (0);
@@ -87,7 +87,7 @@ int					find_opening(t_duel *duel, int map_x, int map_y) //cycle through 1s in t
 				if ((anchor_score = check_shape(duel, &move)) != 0)
 				{
 					duel->move[0] = move.map_x - move.weapon_x;
-					duel->move[1] = move.map_y - move.weapon_y;
+					duel->move[1] = move.map_y - (move.weapon_y - 1);
 					return (anchor_score);
 				}
 			}
@@ -107,10 +107,10 @@ void				attack(t_duel *duel) //find an open spot on the edge of my colonized spa
 	int		anchor_score;
 
 	y = 0;
-	while (y > duel->arena_y)
+	while (y < duel->arena_y)
 	{
 		x = 0;
-		while (x > duel->arena_x)
+		while (x < duel->arena_x)
 		{
 			if (duel->arena[y][x] == -42 && (duel->arena[y][x + 1] > -1 ||
 					duel->arena[y][x - 1] > -1 || duel->arena[y - 1][x] > -1 ||
