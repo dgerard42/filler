@@ -20,6 +20,8 @@ PRINTF = printf/libftprintf.a\
 
 SRCS =	main.c\
 		perceive.c\
+		plan.c\
+		attack.c\
 
 ODIR = ofiles
 

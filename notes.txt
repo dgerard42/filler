@@ -50,7 +50,6 @@ _______________________PROBLEMS___________________________
 	>>
 ~ restructure for efficiency. have fewer base fts that only call others consolidate
 	to a lower level
-~ ma
 
 _______________________SLIME MOLD ALGORITHM_____________________
 ~ If there is more space above grow above

@@ -12,113 +12,6 @@
 
 # include "filler.h"
 
-int				check_fit(t_duel *duel, t_move *move, int delta_x, int delta_y)
-{
-	int	check_x;
-	int	check_y;
-
-	check_x = move->map_x + delta_x;
-	check_y = move->map_y + delta_y;
-	if (duel->arena[check_y][check_x] > -1)
-		return (duel->arena[check_y][check_x]);
-	else
-		return (0);
-}
-
-int				check_shape(t_duel *duel, t_move *move)
-{
-	int		x;
-	int		y;
-	int		anchor_score;
-	bool	reset;
-	int		anchor_inc;
-
-	anchor_score = 0;
-	reset = false;
-	x = move->weapon_x;
-	y = move->weapon_y;
-	while (move->ones < duel->weapon[0][2])
-	{
-		if (reset == true)
-			y = 1;
-		while (y < duel->weapon[0][0] && move->ones < duel->weapon[0][2])
-		{
-			if (reset == true)
-				x = 0;
-			while (x < duel->weapon[0][1] && move->ones < duel->weapon[0][2])
-			{
-				if (duel->weapon[y][x] == 1)
-				{
-					if (anchor_inc = check_fit(duel, move, move->weapon_x - x, move->weapon_y - y) != 0)
-						anchor_score += anchor_inc;
-					else
-						return (0);
-					move->ones++;
-				}
-				x++;
-				reset = true;
-			}
-			y++;
-		}
-	}
-	return(anchor_score);
-}
-
-int					anchor_weapon(t_duel *duel, int map_x, int map_y)
-{
-	t_move	*move;
-	int		x;
-	int		y;
-	int		anchor_score;
-
-	y = 1;
-	while (y < duel->weapon[0][0])
-	{
-		x = 0;
-		while (x < duel->weapon[0][1])
-		{
-			if (duel->weapon[y][x] == 1)
-			{
-				move->weapon_x = x;
-				move->weapon_y = y;
-				move->map_x = map_x;
-				move->map_y = map_y;
-				move->ones = 0;
-				if ((anchor_score = check_shape(duel, move)) != 0)
-					return (anchor_score);
-			}
-			x++;
-		}
-		y++;
-	}
-	return (0);
-	//the way this function is written will not test multiple possible configutations
-	//of the same piece on the same anchor
-}
-
-void				find_opening(t_duel *duel)
-{
-	int		y;
-	int		x;
-	int		anchor_score;
-
-	y = 0;
-	while (y > duel->arena_y)
-	{
-		x = 0;
-		while (x > duel->arena_x)
-		{
-			if (duel->arena[y][x] == -42 && (duel->arena[y][x + 1] > -1 ||
-					duel->arena[y][x - 1] > -1 || duel->arena[y - 1][x] > -1 ||
-						duel->arena[y + 1][x] > -1))
-				if ((anchor_score = anchor_weapon(duel, x, y)) != 0 && duel->move[2] > anchor_score)
-					duel->move[2] = anchor_score;
-			x++;
-		}
-		y++;
-	}
-}
-
 //VVVV compress this shit. Eventually. VVVVV
 void				assess_weaknesses(t_duel *duel, int start_x, int start_y) //assign the correct number to the map spot
 {
@@ -183,7 +76,7 @@ void				assess_weaknesses(t_duel *duel, int start_x, int start_y) //assign the c
 		duel->risk[7] = duel->arena_y;
 }
 
-void				scan_enemy(t_duel *duel)// go through the map, and if not colonized by me, re-assess number
+void				plan(t_duel *duel)// go through the map, and if not colonized by me, re-assess number
 {
 	int		y;
 	int		x;
@@ -209,12 +102,4 @@ void				scan_enemy(t_duel *duel)// go through the map, and if not colonized by m
 		}
 		y++;
 	}
-}
-
-void				plan(t_duel *duel)
-{
-	//malloc here for risk
-	//malloc for move
-	scan_enemy(duel);
-	find_opening(duel); //look for the lowest number where you can place a piece and save coords for attack in move int array
 }

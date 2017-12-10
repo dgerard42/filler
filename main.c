@@ -60,6 +60,8 @@ void				begin(t_duel *duel)
 {
 	duel->arena = NULL;
 	duel->weapon = NULL;
+	duel->risk = ft_intarraynew(7);
+	duel->move = ft_intarraynew(3);
 }
 
 int					main(void)
@@ -73,11 +75,14 @@ int					main(void)
 	while (get_next_line(duel.fd, &sight) > 0)
 	{
 		perceive(&duel, sight);
-		// plan(&duel);
-		// attack(&duel);
+		plan(&duel);
+		attack(&duel);
 	}
 	check_perceptions(&duel);
 	ft_memdel((void**)&sight); //double check that you have to **& here
-	//free other shit from the struct here eventually
+	// ft_memdel(arena);
+	// ft_memdel(weapon);
+	// ft_memdel(move);
+	// ft_memdel(risk);
 	close(duel.fd); //again, rm at end
 }

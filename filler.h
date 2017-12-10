@@ -28,7 +28,7 @@ typedef struct		s_duel
 	int		**weapon;
 	char	warrior;
 	char	enemy;
-	int		*move;, //3 ints, x, y, and score
+	int		*move; //3 ints, x, y, and score
 	bool	turn;
 	int		*risk; //initialize at -1 for all numbers b/c 0 can be valid value, 7 ints
 	int		fd;		//rm in the final version
@@ -45,5 +45,6 @@ typedef	struct		s_move
 
 void				perceive(t_duel *duel, char *sight);
 void				plan(t_duel *duel);
+void				attack(t_duel *duel);
 
 #endif
