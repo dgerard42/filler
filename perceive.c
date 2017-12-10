@@ -18,7 +18,6 @@ void				watch_enemy(t_duel *duel, char *sight)
 	int	y;
 
 	y = 0;
-	// get_next_line(duel->fd, &sight);
 	while (y < duel->arena_y)
 	{
 		x = 0;
@@ -76,7 +75,7 @@ void				learn_weapon(t_duel *duel, char *sight)
 	weapon_x = ft_atoi(sight);
 	//again, ya might have to reset sight here
 	duel->weapon = ft_2dintarray(weapon_y + 1, weapon_x);
-	duel->weapon[0][0] = weapon_y;
+	duel->weapon[0][0] = weapon_y + 1;
 	duel->weapon[0][1] = weapon_x;
 	weapon_y = 1;
 	while (weapon_y < duel->weapon[0][0])
@@ -115,10 +114,7 @@ void				perceive(t_duel *duel, char *sight)
  	if (duel->enemy != 'O' && duel->enemy != 'X' && ft_strstr(sight, "p1"))
 		acquire_target(duel, sight);
 	else if (ft_strstr(sight, "Piece"))
-	{
 		learn_weapon(duel, sight);
-		// inspect_weapon(duel);
-	}
 	else if (duel->arena == NULL && ft_strstr(sight, "Plateau"))
 		observe_arena(duel, sight);
 	else if (ft_strstr(sight, "000"))
