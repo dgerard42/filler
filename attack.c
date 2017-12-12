@@ -72,6 +72,7 @@ int					find_opening(t_duel *duel, int map_x, int map_y) //cycle through 1s in t
 	int		anchor_score;
 
 	y = 1;
+	anchor_score = 0;
 	while (y < duel->weapon[0][0])
 	{
 		x = 0;
@@ -84,20 +85,17 @@ int					find_opening(t_duel *duel, int map_x, int map_y) //cycle through 1s in t
 				move.map_x = map_x;
 				move.map_y = map_y;
 				move.ones = 0;
-				if ((anchor_score = check_shape(duel, &move)) != 0)
+				if ((anchor_score = check_shape(duel, &move)) != 0 && duel->move[2] > anchor_score)
 				{
 					duel->move[0] = move.map_x - move.weapon_x;
 					duel->move[1] = move.map_y - (move.weapon_y - 1);
-					return (anchor_score);
 				}
 			}
 			x++;
 		}
 		y++;
 	}
-	return (0);
-	//the way this function is written will not test multiple possible alignements
-	//of the same piece on the same anchor
+	return (anchor_score);
 }
 
 void				attack(t_duel *duel) //find an open spot on the edge of my colonized space
@@ -107,6 +105,7 @@ void				attack(t_duel *duel) //find an open spot on the edge of my colonized spa
 	int		anchor_score;
 
 	y = 0;
+	duel->move[2] = 4200;
 	while (y < duel->arena_y)
 	{
 		x = 0;

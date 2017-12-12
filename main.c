@@ -19,6 +19,7 @@ void				check_perceptions(t_duel *duel) //debug function
 
 	y = 0;
 	ft_putstr("_______DEBUGGER OUTPUT:_______\n");
+	ft_printf("\nREWARD FOR MOVE = %d\n", duel->move[2]);
 	ft_printf("\nWARRIOR = %c, ENEMY = %c\n", duel->warrior, duel->enemy);
 	ft_putstr("ARENA:\n");
 	ft_printf("ARENA_X = %d, ARENA_Y = %d\n", duel->arena_x, duel->arena_y);
@@ -53,7 +54,7 @@ int					read_test_file(void) //for early in development
 {
 	int fd;
 
-	fd = open("resources/test_outputs/output_0.txt", O_RDONLY);
+	fd = open("resources/test_outputs/output_5.txt", O_RDONLY);
 	return(fd);
 }
 
