@@ -49,7 +49,7 @@ int				check_shape(t_duel *duel, t_move *move) //cycle through the rest of the p
 			{
 				if (duel->weapon[y][x] == 1)
 				{
-					if ((anchor_inc = check_fit(duel, move, move->weapon_x - x, move->weapon_y - (y - 1))) != 0)
+					if ((anchor_inc = check_fit(duel, move, move->weapon_x - x, move->weapon_y - y - 1)) != 0)
 						anchor_score += anchor_inc;
 					else
 						return (0);
@@ -97,7 +97,7 @@ int					find_opening(t_duel *duel, int map_x, int map_y) //cycle through 1s in t
 	}
 	return (anchor_score);
 }
-
+//5, 2
 void				attack(t_duel *duel) //find an open spot on the edge of my colonized space
 {
 	int		y;
@@ -121,4 +121,5 @@ void				attack(t_duel *duel) //find an open spot on the edge of my colonized spa
 		y++;
 	}
 	ft_printf("[%d, %d]\n", duel->move[1], duel->move[0]);
+	duel->turn = 0;
 }

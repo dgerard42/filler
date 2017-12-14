@@ -66,6 +66,16 @@ void				begin(t_duel *duel)
 	duel->move = ft_intarraynew(3);
 }
 
+void				wait_cycle(t_duel *duel, sight)
+{
+	int lines;
+
+	lines = 0;
+	while (lines < duel->line_number)
+
+	duel->turn = 1;
+}
+
 int					main(void)
 {
 	t_duel	duel;
@@ -74,10 +84,17 @@ int					main(void)
 	sight = NULL;
 	duel.fd = read_test_file();
 	begin(&duel); //might be unnessary later, try w/o
-	while (get_next_line(duel.fd, &sight) > 0)
+	while (duel.turn != 2)
+	{
 		perceive(&duel, sight);
-	plan(&duel);
-	attack(&duel);
+		if (duel.turn == 1)
+		{
+			plan(&duel);
+			attack(&duel);
+		}
+		else if (duel.turn == 0)
+			wait_cycle(duel, sight);
+	}
 	check_perceptions(&duel);
 	ft_memdel((void**)&sight); //double check that you have to **& here
 	// ft_memdel(arena); //clear it all out here

@@ -98,10 +98,23 @@ ___________________HEAT MAP ALGORITHM_________________________
 	>> then continue in the weapon_fits loop fir the next
 
 ___________________READING LOOP STRUCTURE______________________
-~ From main, call perceive and continue reading lines until you've learned all
-	the info that you need to learn about the environment.
-		>>initialize all the struct elements to 0
-~ Once you
+~ if you just initialized duel->warrior to p1, then initialize turn to true
+~ if arena uninitialized an turn is true
+	>> learn weapon
+	>> observe arena
+	>> watch enemy
+~ if arena uninitialized an turn is false
+	>> observe arena
+	>> wait cycle
+~ if arena initialized an turn is true
+	>>learn weapon
+	>> watch enemy
+~ if arena initialized and turn is false
+	>> wait cycle
+~ wait cycle
+	>>length of map
+	>>plus length of Piece // but if you do this then you will have to look at pice size always if you do this
+	>>plus 3 lines
 
 ___________________________MAP KEY___________________________
 ~ open spaces are positive numbers, calculated reward based on algorithm
