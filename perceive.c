@@ -109,16 +109,27 @@ void				acquire_target(t_duel *duel, char *sight)
 
 void				perceive(t_duel *duel, char *sight)
 {
- 	if (duel->enemy != 'O' && duel->enemy != 'X' && ft_strstr(sight, "p1"))
+	bool keep_looking;
+
+	keep_looking = true;
+	while (get_next_line(duel->fd, &sight) > 0 && keep_looking == true)
 	{
-		acquire_target(duel, sight);
-		if (duel->warrior == 'O')
-			duel->turn == 1;
+		if (duel->enemy != 'O' && duel->enemy != 'X' && ft_strstr(sight, "p1"))
+		{
+			acquire_target(duel, sight);
+			if (duel->warrior == 'O')
+				duel->turn = 1;
+		}
+		else if (ft_strstr(sight, "Piece"))
+		{
+			learn_weapon(duel, sight);
+			keep_looking = false;
+		}
+		else if (duel->arena == NULL && ft_strstr(sight, "Plateau"))
+			observe_arena(duel, sight);
+		else if (ft_strstr(sight, "000") && duel->turn == 1)
+			watch_enemy(duel, sight);
+		else if (ft_strstr(sight, "fin"))
+			duel->turn = 2;
 	}
-	else if (ft_strstr(sight, "Piece"))
-		learn_weapon(duel, sight);
-	else if (duel->arena == NULL && ft_strstr(sight, "Plateau"))
-		observe_arena(duel, sight);
-	else if (ft_strstr(sight, "000") && duel->turn == 1)
-		watch_enemy(duel, sight);
 }

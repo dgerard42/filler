@@ -29,7 +29,6 @@ typedef struct		s_duel
 	int		*risk; //initialize at -1 for all numbers b/c 0 can be valid value, 7 ints
 	int		fd;		//rm in the final version
 	int		turn; //use this to determine turn? 0 = not mine 1 = mine 2 = FIN
-	int		line_number;
 }					t_duel;
 
 typedef	struct		s_move
