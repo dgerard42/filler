@@ -112,24 +112,26 @@ void				perceive(t_duel *duel, char *sight)
 	bool keep_looking;
 
 	keep_looking = true;
-	while (get_next_line(duel->fd, &sight) > 0 && keep_looking == true)
+	while (keep_looking == true && get_next_line(duel->fd, &sight) > 0)
 	{
-		if (duel->enemy != 'O' && duel->enemy != 'X' && ft_strstr(sight, "p1"))
-		{
-			acquire_target(duel, sight);
-			if (duel->warrior == 'O')
-				duel->turn = 1;
-		}
-		else if (ft_strstr(sight, "Piece"))
-		{
-			learn_weapon(duel, sight);
-			keep_looking = false;
-		}
-		else if (duel->arena == NULL && ft_strstr(sight, "Plateau"))
-			observe_arena(duel, sight);
-		else if (ft_strstr(sight, "000") && duel->turn == 1)
-			watch_enemy(duel, sight);
-		else if (ft_strstr(sight, "fin"))
-			duel->turn = 2;
+		// {
+			if (duel->enemy != 'O' && duel->enemy != 'X' && ft_strstr(sight, "p1"))
+			{
+				acquire_target(duel, sight);
+				// duel->turn = (duel->warrior == 'O') ? 1 : 0;
+			}
+			else if (ft_strstr(sight, "Piece"))
+			{
+				learn_weapon(duel, sight);
+				keep_looking = false;
+				// duel->turn = 1;
+			}
+			else if (duel->arena == NULL && ft_strstr(sight, "Plateau"))
+				observe_arena(duel, sight);
+			else if (ft_strstr(sight, "000"))// && duel->turn == 1)
+				watch_enemy(duel, sight);
+		// }
 	}
+		// else if (ft_strstr(sight, "fin"))
+			// duel->turn = 2;
 }
