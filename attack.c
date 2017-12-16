@@ -102,7 +102,24 @@ int					find_opening(t_duel *duel, int map_x, int map_y) //cycle through 1s in t
 	}
 	return (anchor_score);
 }
-//5, 2
+
+int					check_adj(t_duel *duel, int x, int y)
+{
+	if (x + 1 < duel->arena_x)
+		if (duel->arena[y][x + 1] > -1)
+			return (1);
+	if (y + 1 < duel->arena_y)
+		if (duel->arena[y + 1][x] > -1)
+			return (1);
+	if (x - 1 > 0)
+		if (duel->arena[y][x - 1] > -1)
+			return (1);
+	if (y - 1 > 0)
+		if (duel->arena[y - 1][x] > -1)
+			return (1);
+	return (0);
+}
+
 void				attack(t_duel *duel) //find an open spot on the edge of my colonized space
 {
 	int		y;
@@ -116,9 +133,7 @@ void				attack(t_duel *duel) //find an open spot on the edge of my colonized spa
 		x = 0;
 		while (x < duel->arena_x)
 		{
-			if (duel->arena[y][x] == -42 && (duel->arena[y][x + 1] > -1 ||
-					duel->arena[y][x - 1] > -1 || duel->arena[y - 1][x] > -1 ||
-						duel->arena[y + 1][x] > -1))
+			if (duel->arena[y][x] == -42 && check_adj(duel, x, y))
 				if ((anchor_score = find_opening(duel, x, y)) != 0 && duel->move[2] > anchor_score)
 					duel->move[2] = anchor_score;
 			x++;

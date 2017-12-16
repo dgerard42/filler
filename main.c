@@ -56,7 +56,7 @@ void				begin(t_duel *duel)
 	duel->weapon = NULL;
 	duel->risk = ft_intarraynew(7);
 	duel->move = ft_intarraynew(3);
-	duel->turn = 0;
+	// duel->turn = 0;
 }
 
 // void				wait_cycle(t_duel *duel, char *sight)
@@ -76,7 +76,7 @@ int					read_test_file(void) //for early in development
 {
 	int fd;
 
-	fd = open("resources/test_outputs/output_7.txt", O_RDONLY);
+	fd = open("resources/test_outputs/output_9.txt", O_RDONLY);
 	return(fd);
 }
 
@@ -89,22 +89,14 @@ int					main(void)
 	duel.fd = read_test_file();
 	// duel.fd = STDIN_FILENO;
 	begin(&duel); //might be unnessary later, try w/o
-	// while (duel.turn != 2)
-	while (1)
+	get_next_line(duel.fd, &sight);
+	if (sight[0] == '$' && sight[1] == '$' && sight[2] == '$')
 	{
-		perceive(&duel, sight);
-		if (duel.turn == 1)
-		{
-			plan(&duel);
-			attack(&duel);
-			duel.turn = 0;
-	 	}
-		// else if (duel.turn == 0)
-			// wait_cycle(&duel, sight);
-		// check_perceptions(&duel);
-		// break;
+		duel.enemy = (sight[10] == '2') ? 'O' : 'X';
+		duel.warrior = (sight[10] == '2') ? 'X' : 'O';
 	}
-	ft_memdel((void**)&sight); //double check that you have to **& here
+	perceive(&duel, sight);
+	// ft_memdel((void**)&sight); //double check that you have to **& here
 	// ft_memdel(arena); //clear it all out here
 	// ft_memdel(weapon);
 	// ft_memdel(move);

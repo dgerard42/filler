@@ -12,7 +12,7 @@
 
 # include "filler.h"
 
-void				watch_enemy(t_duel *duel, char *sight)
+void	watch_enemy(t_duel *duel, char *sight)
 {
 	int x;
 	int	y;
@@ -38,6 +38,7 @@ void				watch_enemy(t_duel *duel, char *sight)
 		if (y < duel->arena_y)
 			get_next_line(duel->fd, &sight);
 	}
+	// ft_memdel((void**)&sight);
 }
 
 void				observe_arena(t_duel *duel, char *sight)
@@ -90,48 +91,83 @@ void				learn_weapon(t_duel *duel, char *sight)
 		}
 		weapon_y++;
 	}
+	// ft_memdel((void**)&sight);
 	duel->weapon[0][2] = pieces;
 }
 
-void				acquire_target(t_duel *duel, char *sight)
-{
-	if (!(ft_strstr(sight, "dgerard.filler")))
-	{
-		duel->enemy = 'O';
-		duel->warrior = 'X';
-	}
-	else
-	{
-		duel->enemy = 'X';
-		duel->warrior = 'O';
-	}
-}
-
+// void				acquire_target(t_duel *duel, char *sight)
+// {
+// 	if ()
+// 	{
+// 		duel->enemy = (ft_strstr(sight, "p1") ? 'O' : 'X';
+// 		duel->warrior = (ft_strstr(sight, "p1") ? 'X' : 'O';
+// 	}
+// 	else
+// 	{
+// 		duel->enemy = 'X';
+// 		duel->warrior = 'O';
+// 	}
+// }
+//
 void				perceive(t_duel *duel, char *sight)
 {
-	bool keep_looking;
-
-	keep_looking = true;
-	while (keep_looking == true && get_next_line(duel->fd, &sight) > 0)
+	while (get_next_line(duel->fd, &sight) > 0)
 	{
-		// {
-			if (duel->enemy != 'O' && duel->enemy != 'X' && ft_strstr(sight, "p1"))
-			{
-				acquire_target(duel, sight);
-				// duel->turn = (duel->warrior == 'O') ? 1 : 0;
-			}
-			else if (ft_strstr(sight, "Piece"))
-			{
-				learn_weapon(duel, sight);
-				keep_looking = false;
-				duel->turn = 1;
-			}
-			else if (duel->arena == NULL && ft_strstr(sight, "Plateau"))
-				observe_arena(duel, sight);
-			else if (ft_strstr(sight, "000"))// && duel->turn == 1)
-				watch_enemy(duel, sight);
-		// }
+		if (ft_strstr(sight, "Plateau") && duel->arena == NULL)
+			observe_arena(duel, sight);
+		else if (ft_strstr(sight, "000"))
+			watch_enemy(duel, sight);
+		else if (ft_strstr(sight, "Piece"))
+		{
+			learn_weapon(duel, sight);
+			plan(duel);
+			attack(duel);
+			// check_perceptions(duel);
+			duel->move[0] = 0;
+			duel->move[1] = 0;
+			duel->move[2] = 0;
+		}
+		// ft_memdel((void**)&sight);
 	}
-		// else if (ft_strstr(sight, "fin"))
-			// duel->turn = 2;
 }
+
+// void				perceive(t_duel *duel, char *sight)
+// {
+// 	bool keep_looking;
+//
+// 	keep_looking = true;
+// 	get_next_line(duel->fd, &sight);
+// 	// while (keep_looking == true)
+// 	// {
+// 		// while (ft_strstr(sight, "# "))
+// 			// get_next_line(duel->fd, &sight);
+// 		if (ft_strstr(sight, "$$$") || ft_strstr(sight, "launched"))
+// 		{
+// 			if (duel->enemy != 'O' && duel->enemy != 'X' && ft_strstr(sight, "p1"))
+// 				acquire_target(duel, sight);
+// 			get_next_line(duel->fd, &sight);
+// 		}
+// 		else if (ft_strstr(sight, "Piece"))
+// 		{
+// 			learn_weapon(duel, sight);
+// 			keep_looking = false;
+// 			duel->turn = 1;
+// 		}
+// 		else if (ft_strstr(sight, "Plateau"))
+// 		{
+// 			if (duel->arena == NULL)
+// 				observe_arena(duel, sight);
+// 			get_next_line(duel->fd, &sight);
+// 			get_next_line(duel->fd, &sight);
+// 		}
+// 		else if (ft_strstr(sight, "000"))
+// 		{
+// 			watch_enemy(duel, sight);
+// 			get_next_line(duel->fd, &sight);
+// 		}
+// 		else
+// 			ft_printf("ERROR! shit is fucked my dude!!\n");
+// 	// }
+// 		// else if (ft_strstr(sight, "fin"))
+// 			// duel->turn = 2;
+// }

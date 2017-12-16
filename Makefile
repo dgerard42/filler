@@ -22,6 +22,7 @@ SRCS =	main.c\
 		perceive.c\
 		plan.c\
 		attack.c\
+		kane_alloc_wrap.c\
 
 ODIR = ofiles
 

@@ -28,7 +28,7 @@ typedef struct		s_duel
 	int		*move; //3 ints, x, y, and score
 	int		*risk; //initialize at -1 for all numbers b/c 0 can be valid value, 7 ints
 	int		fd;		//rm in the final version
-	int		turn; //use this to determine turn? 0 = not mine 1 = mine 2 = FIN
+	// int	turn; //use this to determine turn? 0 = not mine 1 = mine 2 = FIN
 }					t_duel;
 
 typedef	struct		s_move
@@ -43,11 +43,8 @@ typedef	struct		s_move
 void				perceive(t_duel *duel, char *sight);
 void				plan(t_duel *duel);
 void				attack(t_duel *duel);
+void				check_perceptions(t_duel *duel);//rm at end
 
 #endif
 
-
-//it's sitting / getting stuck in learn weapon cause it tries to read one line too far
-//on output 9 it puts out a negativ coordinate even though thats invalid in this situation
-//BUG BUG BUG the first check is always on existing colonized space!!! fug
-//change adjacent check settings so its doesn't seg whne it checks out of range
+//your'e just never freeing when you need to. fug.
