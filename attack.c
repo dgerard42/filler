@@ -21,7 +21,9 @@ int				check_fit(t_duel *duel, t_move *move, int delta_x, int delta_y) //check m
 	check_y = move->map_y + delta_y;
 	if (check_x < 0 || check_x > duel->arena_x || check_y < 0 || check_y > duel->arena_y)
 		return (0);
-	if (duel->arena[check_y][check_x] > -1)
+	if (delta_x == 0 && delta_y == 0 && duel->arena[check_y][check_x] == -42)
+		return (42);
+	else if (duel->arena[check_y][check_x] > -1)
 		return (duel->arena[check_y][check_x]);
 	else
 		return (0);
@@ -51,8 +53,8 @@ int				check_shape(t_duel *duel, t_move *move) //cycle through the rest of the p
 			{
 				if (duel->weapon[y][x] == 1)
 				{
-					//minus 1 on y below here fuckin wit stuff?
-					if ((anchor_inc = check_fit(duel, move, move->weapon_x - x, (move->weapon_y - 1) - y)) != 0)
+					//minus 1 on y below here fuckin wit stuff
+					if ((anchor_inc = check_fit(duel, move, x - move->weapon_x, y - move->weapon_y)) != 0)
 						anchor_score += anchor_inc;
 					else
 						return (0);

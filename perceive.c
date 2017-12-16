@@ -124,7 +124,7 @@ void				perceive(t_duel *duel, char *sight)
 			{
 				learn_weapon(duel, sight);
 				keep_looking = false;
-				// duel->turn = 1;
+				duel->turn = 1;
 			}
 			else if (duel->arena == NULL && ft_strstr(sight, "Plateau"))
 				observe_arena(duel, sight);

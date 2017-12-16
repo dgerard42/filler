@@ -56,7 +56,7 @@ void				begin(t_duel *duel)
 	duel->weapon = NULL;
 	duel->risk = ft_intarraynew(7);
 	duel->move = ft_intarraynew(3);
-	// duel->turn = 0;
+	duel->turn = 0;
 }
 
 // void				wait_cycle(t_duel *duel, char *sight)
@@ -76,7 +76,7 @@ int					read_test_file(void) //for early in development
 {
 	int fd;
 
-	fd = open("resources/test_outputs/output_9.txt", O_RDONLY);
+	fd = open("resources/test_outputs/output_7.txt", O_RDONLY);
 	return(fd);
 }
 
@@ -93,12 +93,12 @@ int					main(void)
 	while (1)
 	{
 		perceive(&duel, sight);
-		// if (duel.turn == 1)
-		// {
+		if (duel.turn == 1)
+		{
 			plan(&duel);
 			attack(&duel);
-			// duel.turn = 0;
-		// }
+			duel.turn = 0;
+	 	}
 		// else if (duel.turn == 0)
 			// wait_cycle(&duel, sight);
 		// check_perceptions(&duel);
