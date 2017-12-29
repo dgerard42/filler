@@ -1,0 +1,29 @@
+# -------------- VM  version 1.1 ------------- #
+#                                              #
+# 42 / filler VM Developped by: Hcao - Abanlin #
+#                                              #
+# -------------------------------------------- #
+launched resources/players/carli.filler
+$$$ exec p1 : [resources/players/carli.filler]
+launched resources/players/dgerard.filler
+$$$ exec p2 : [resources/players/dgerard.filler]
+Plateau 15 17:
+    01234567890123456
+000 .................
+001 .................
+002 .................
+003 .............ooo.
+004 ...............o.
+005 ..............OOO
+006 ..............OOO
+007 ..............OOO
+008 OOOOOO....OOOOOOO
+009 ..OOOOOOOOO......
+010 ........OO.......
+011 ........OO.......
+012 ......OO.O..O.X..
+013 ......OOOOOOOO..O
+014 ....OOOOOOOOOOOOO
+Piece 2 3:
+.**
+...

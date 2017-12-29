@@ -84,11 +84,12 @@ int					main(void)
 {
 	t_duel	duel;
 	char	*sight;
+	int		weapon_y;
 
 	sight = NULL;
 	duel.fd = read_test_file();
 	// duel.fd = STDIN_FILENO;
-	begin(&duel); //might be unnessary later, try w/o
+	begin(&duel);
 	get_next_line(duel.fd, &sight);
 	if (sight[0] == '$' && sight[1] == '$' && sight[2] == '$')
 	{
@@ -96,10 +97,11 @@ int					main(void)
 		duel.warrior = (sight[10] == '2') ? 'X' : 'O';
 	}
 	perceive(&duel, sight);
-	// ft_memdel((void**)&sight); //double check that you have to **& here
-	// ft_memdel(arena); //clear it all out here
-	// ft_memdel(weapon);
-	// ft_memdel(move);
-	// ft_memdel(risk);
-	// close(duel.fd); //again, rm at end
+	ft_memdel((void**)&sight);
+	ft_2dfreearray((void**)duel.arena, duel.arena_y); //clear it all out here
+	weapon_y = duel.weapon[0][0];
+	ft_2dfreearray((void**)duel.weapon, weapon_y);
+	ft_memdel((void**)&duel.move);
+	ft_memdel((void**)&duel.risk);
+	close(duel.fd); //again, rm at end
 }

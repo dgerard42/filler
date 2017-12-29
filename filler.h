@@ -48,3 +48,4 @@ void				check_perceptions(t_duel *duel);//rm at end
 #endif
 
 //your'e just never freeing when you need to. fug.
+//every single call of get next line must be freed. every. call.
