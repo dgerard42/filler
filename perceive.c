@@ -36,9 +36,12 @@ void	watch_enemy(t_duel *duel, char *sight)
 		}
 		y++;
 		if (y < duel->arena_y)
+		{
+			ft_memdel((void**)&sight);//added in during gnl memory management fix push
 			get_next_line(duel->fd, &sight);
+		}
 	}
-	// ft_memdel((void**)&sight);
+	ft_memdel((void**)&sight); //added in during gnl memory management fix push
 }
 
 void				observe_arena(t_duel *duel, char *sight)
@@ -62,6 +65,7 @@ void				learn_weapon(t_duel *duel, char *sight)
 	int	weapon_x;
 	int	weapon_y;
 	int	pieces;
+	char	*sight_tmp;
 
 	pieces = 0;
 	if (duel->weapon != NULL)
@@ -77,10 +81,12 @@ void				learn_weapon(t_duel *duel, char *sight)
 	duel->weapon[0][0] = weapon_y + 1;
 	duel->weapon[0][1] = weapon_x;
 	weapon_y = 1;
+	// ft_memdel((void**)&sight); //added in during gnl memory management fix push
 	while (weapon_y < duel->weapon[0][0])
 	{
 		weapon_x = 0;
 		get_next_line(duel->fd, &sight);
+		sight_tmp = sight;
 		while (weapon_x < duel->weapon[0][1])
 		{
 			duel->weapon[weapon_y][weapon_x] = (*sight == '*') ? 1 : 0;
@@ -90,8 +96,8 @@ void				learn_weapon(t_duel *duel, char *sight)
 			//compact here when working
 		}
 		weapon_y++;
+		ft_memdel((void**)&sight_tmp); //added in during gnl memory management fix push
 	}
-	// ft_memdel((void**)&sight);
 	duel->weapon[0][2] = pieces;
 }
 
@@ -114,20 +120,28 @@ void				perceive(t_duel *duel, char *sight)
 	while (get_next_line(duel->fd, &sight) > 0)
 	{
 		if (ft_strstr(sight, "Plateau") && duel->arena == NULL)
+		{
 			observe_arena(duel, sight);
+			// ft_memdel((void**)&sight);
+		}
 		else if (ft_strstr(sight, "000"))
+		{
 			watch_enemy(duel, sight);
+			// ft_memdel((void**)&sight);
+		}
 		else if (ft_strstr(sight, "Piece"))
 		{
 			learn_weapon(duel, sight);
+			ft_memdel((void**)&sight);
 			plan(duel);
 			attack(duel);
 			// check_perceptions(duel);
-			duel->move[0] = 0;
-			duel->move[1] = 0;
-			duel->move[2] = 0;
+			// duel->move[0] = 0; ur prolly fine w/o these
+			// duel->move[1] = 0;
+			// duel->move[2] = 0;
 		}
-		// ft_memdel((void**)&sight);
+		else
+			ft_memdel((void**)&sight); //added in during gnl memory management fix pushs
 	}
 }
 

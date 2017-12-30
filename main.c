@@ -96,8 +96,9 @@ int					main(void)
 		duel.enemy = (sight[10] == '2') ? 'O' : 'X';
 		duel.warrior = (sight[10] == '2') ? 'X' : 'O';
 	}
+	ft_memdel((void**)&sight); //added in during gnl memory management fix push
 	perceive(&duel, sight);
-	ft_memdel((void**)&sight);
+	// ft_memdel((void**)&sight);
 	ft_2dfreearray((void**)duel.arena, duel.arena_y); //clear it all out here
 	weapon_y = duel.weapon[0][0];
 	ft_2dfreearray((void**)duel.weapon, weapon_y);
