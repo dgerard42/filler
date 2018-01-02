@@ -46,6 +46,9 @@ void	watch_enemy(t_duel *duel, char *sight)
 
 void				observe_arena(t_duel *duel, char *sight)
 {
+	char	*sight_tmp;
+
+	sight_tmp = sight;
 	while (!(ft_isdigit(*sight)))
 		sight++;
 	duel->arena_y = ft_atoi(sight);
@@ -55,6 +58,7 @@ void				observe_arena(t_duel *duel, char *sight)
 	//do you need to make both ++ here, or only one?
 	duel->arena_x = ft_atoi(sight);
 	duel->arena = ft_2dintarray(duel->arena_y, duel->arena_x);
+	ft_memdel((void**)&sight_tmp);
 	//make sure x & ys arent reversed
 	//you might have to reset the pointer at the end of this?
 	//maybe have a pseudo null termintor number, or use zero for that purpose?
@@ -62,12 +66,13 @@ void				observe_arena(t_duel *duel, char *sight)
 
 void				learn_weapon(t_duel *duel, char *sight)
 {
-	int	weapon_x;
-	int	weapon_y;
-	int	pieces;
+	int		weapon_x;
+	int		weapon_y;
+	int		pieces;
 	char	*sight_tmp;
 
 	pieces = 0;
+	sight_tmp = sight;
 	if (duel->weapon != NULL)
 		ft_memdel((void**)&duel->weapon);
 	while (!(ft_isdigit(*sight)))
@@ -81,7 +86,7 @@ void				learn_weapon(t_duel *duel, char *sight)
 	duel->weapon[0][0] = weapon_y + 1;
 	duel->weapon[0][1] = weapon_x;
 	weapon_y = 1;
-	// ft_memdel((void**)&sight); //added in during gnl memory management fix push
+	ft_memdel((void**)&sight_tmp); //added in during gnl memory management fix push
 	while (weapon_y < duel->weapon[0][0])
 	{
 		weapon_x = 0;
@@ -101,20 +106,6 @@ void				learn_weapon(t_duel *duel, char *sight)
 	duel->weapon[0][2] = pieces;
 }
 
-// void				acquire_target(t_duel *duel, char *sight)
-// {
-// 	if ()
-// 	{
-// 		duel->enemy = (ft_strstr(sight, "p1") ? 'O' : 'X';
-// 		duel->warrior = (ft_strstr(sight, "p1") ? 'X' : 'O';
-// 	}
-// 	else
-// 	{
-// 		duel->enemy = 'X';
-// 		duel->warrior = 'O';
-// 	}
-// }
-//
 void				perceive(t_duel *duel, char *sight)
 {
 	while (get_next_line(duel->fd, &sight) > 0)
@@ -132,7 +123,7 @@ void				perceive(t_duel *duel, char *sight)
 		else if (ft_strstr(sight, "Piece"))
 		{
 			learn_weapon(duel, sight);
-			ft_memdel((void**)&sight);
+			// ft_memdel((void**)&sight); //shouldn't need this here, b/c you free in the weapon reading loop
 			plan(duel);
 			attack(duel);
 			// check_perceptions(duel);
@@ -144,44 +135,3 @@ void				perceive(t_duel *duel, char *sight)
 			ft_memdel((void**)&sight); //added in during gnl memory management fix pushs
 	}
 }
-
-// void				perceive(t_duel *duel, char *sight)
-// {
-// 	bool keep_looking;
-//
-// 	keep_looking = true;
-// 	get_next_line(duel->fd, &sight);
-// 	// while (keep_looking == true)
-// 	// {
-// 		// while (ft_strstr(sight, "# "))
-// 			// get_next_line(duel->fd, &sight);
-// 		if (ft_strstr(sight, "$$$") || ft_strstr(sight, "launched"))
-// 		{
-// 			if (duel->enemy != 'O' && duel->enemy != 'X' && ft_strstr(sight, "p1"))
-// 				acquire_target(duel, sight);
-// 			get_next_line(duel->fd, &sight);
-// 		}
-// 		else if (ft_strstr(sight, "Piece"))
-// 		{
-// 			learn_weapon(duel, sight);
-// 			keep_looking = false;
-// 			duel->turn = 1;
-// 		}
-// 		else if (ft_strstr(sight, "Plateau"))
-// 		{
-// 			if (duel->arena == NULL)
-// 				observe_arena(duel, sight);
-// 			get_next_line(duel->fd, &sight);
-// 			get_next_line(duel->fd, &sight);
-// 		}
-// 		else if (ft_strstr(sight, "000"))
-// 		{
-// 			watch_enemy(duel, sight);
-// 			get_next_line(duel->fd, &sight);
-// 		}
-// 		else
-// 			ft_printf("ERROR! shit is fucked my dude!!\n");
-// 	// }
-// 		// else if (ft_strstr(sight, "fin"))
-// 			// duel->turn = 2;
-// }

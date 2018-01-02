@@ -59,24 +59,11 @@ void				begin(t_duel *duel)
 	// duel->turn = 0;
 }
 
-// void				wait_cycle(t_duel *duel, char *sight)
-// {
-// 	int line_number;
-//
-// 	line_number = duel->arena_y + (duel->weapon[0][0] - 1) + 5;
-// 	while (line_number > 0)
-// 	{
-// 		get_next_line(duel->fd, &sight);
-// 		line_number--;
-// 	}
-// 	duel->turn = 1;
-// }
-
 int					read_test_file(void) //for early in development
 {
 	int fd;
 
-	fd = open("resources/test_outputs/output_9.txt", O_RDONLY);
+	fd = open("resources/test_outputs/output_8.txt", O_RDONLY);
 	return(fd);
 }
 
