@@ -19,7 +19,7 @@ int			**ft_2dintarray(size_t y, size_t x)
 
 	subarray = 0;
 	fresh = ft_memalloc(sizeof(int *) * (y + 1));
-	while (subarray <= y)
+	while (subarray < y)
 	{
 		fresh[subarray] = ft_intarraynew(x);
 		subarray++;

@@ -38,6 +38,7 @@ void	watch_enemy(t_duel *duel, char *sight)
 		if (y < duel->arena_y)
 		{
 			ft_memdel((void**)&sight);//added in during gnl memory management fix push
+			// ft_printf("MALLOC 5\n");//label every malloc
 			get_next_line(duel->fd, &sight);
 		}
 	}
@@ -57,6 +58,7 @@ void				observe_arena(t_duel *duel, char *sight)
 	sight++;
 	//do you need to make both ++ here, or only one?
 	duel->arena_x = ft_atoi(sight);
+	// ft_printf("MALLOC 4\n");//label every malloc
 	duel->arena = ft_2dintarray(duel->arena_y, duel->arena_x);
 	ft_memdel((void**)&sight_tmp);
 	//make sure x & ys arent reversed
@@ -73,27 +75,31 @@ void				learn_weapon(t_duel *duel, char *sight)
 
 	pieces = 0;
 	sight_tmp = sight;
-	if (duel->weapon != NULL)
-		ft_memdel((void**)&duel->weapon);
 	while (!(ft_isdigit(*sight)))
 		sight++;
+	dprintf(duel->log_file, "weapon ft_0\n");
 	weapon_y = ft_atoi(sight);
 	while (ft_isdigit(*sight))
 		sight++;
 	sight++;
+	dprintf(duel->log_file, "weapon ft_1\n");
 	weapon_x = ft_atoi(sight);
+	// ft_printf("MALLOC 6\n");//label every malloc
 	duel->weapon = ft_2dintarray(weapon_y + 1, weapon_x);
 	duel->weapon[0][0] = weapon_y + 1;
 	duel->weapon[0][1] = weapon_x;
+	dprintf(duel->log_file, "weapon ft_2\n");
 	weapon_y = 1;
 	ft_memdel((void**)&sight_tmp); //added in during gnl memory management fix push
 	while (weapon_y < duel->weapon[0][0])
 	{
 		weapon_x = 0;
+		// ft_printf("MALLOC 7\n");//label every malloc
 		get_next_line(duel->fd, &sight);
 		sight_tmp = sight;
 		while (weapon_x < duel->weapon[0][1])
 		{
+			dprintf(duel->log_file, "weapon ft_3\n");
 			duel->weapon[weapon_y][weapon_x] = (*sight == '*') ? 1 : 0;
 			pieces = (duel->weapon[weapon_y][weapon_x] == 1) ? pieces + 1 : pieces;
 			weapon_x++;
@@ -101,32 +107,42 @@ void				learn_weapon(t_duel *duel, char *sight)
 			//compact here when working
 		}
 		weapon_y++;
+		dprintf(duel->log_file, "weapon_y%d, duel->weapon[0][0]%d\n", weapon_y, duel->weapon[0][0]);
 		ft_memdel((void**)&sight_tmp); //added in during gnl memory management fix push
 	}
+	dprintf(duel->log_file, "weapon ft_4\n");
 	duel->weapon[0][2] = pieces;
 }
 
 void				perceive(t_duel *duel, char *sight)
 {
+	// ft_printf("MALLOC 3\n");//label every malloc
+	int		weapon_y;
+
 	while (get_next_line(duel->fd, &sight) > 0)
 	{
+	
 		if (ft_strstr(sight, "Plateau") && duel->arena == NULL)
 		{
 			observe_arena(duel, sight);
-			// ft_memdel((void**)&sight);
+			dprintf(duel->log_file, "uve malloced for the arena\n");
 		}
 		else if (ft_strstr(sight, "000"))
 		{
 			watch_enemy(duel, sight);
-			// ft_memdel((void**)&sight);
+			dprintf(duel->log_file, "uve observed the arena\n");
 		}
 		else if (ft_strstr(sight, "Piece"))
 		{
 			learn_weapon(duel, sight);
-			// ft_memdel((void**)&sight); //shouldn't need this here, b/c you free in the weapon reading loop
+			dprintf(duel->log_file, "uve learned the weapon\n");
 			plan(duel);
+			dprintf(duel->log_file, "uve filled the heatmap\n");
 			attack(duel);
+			dprintf(duel->log_file, "uve placed the piece. congrats.\n");
 			// check_perceptions(duel);
+			weapon_y = duel->weapon[0][0];
+			ft_2dfreearray((void**)duel->weapon, weapon_y);
 			// duel->move[0] = 0; ur prolly fine w/o these
 			// duel->move[1] = 0;
 			// duel->move[2] = 0;

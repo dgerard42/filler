@@ -15,14 +15,12 @@
 void			ft_2dfreearray(void **array, int n)
 {
 	int i;
-	int **tmp;
 
 	i = 0;
-	tmp = (int **)array;
 	while (i < n)
 	{
-		ft_memdel((void**)&tmp[i]);
+		ft_memdel((void**)&array[i]);
 		i++;
 	}
-	ft_memdel(array);
+	free(array);
 }

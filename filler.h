@@ -16,6 +16,7 @@
 # include "libft/libft.h"
 # include "printf/ft_printf.h"
 # include <fcntl.h> //rm in the final version, using for open
+# include <stdio.h> //rm at end for dprintf for log file
 
 typedef struct		s_duel
 {
@@ -28,6 +29,7 @@ typedef struct		s_duel
 	int		*move; //3 ints, x, y, and score
 	int		*risk; //initialize at -1 for all numbers b/c 0 can be valid value, 7 ints
 	int		fd;		//rm in the final version
+	int		log_file;
 	// int	turn; //use this to determine turn? 0 = not mine 1 = mine 2 = FIN
 }					t_duel;
 
@@ -47,5 +49,6 @@ void				check_perceptions(t_duel *duel);//rm at end
 
 #endif
 
-//your'e just never freeing when you need to. fug.
-//every single call of get next line must be freed. every. call.
+//	CURRENT TASK
+//	investigate the possibility of off by one placing on the weapon_y
+// make sure that the top left spot is always the anchor
