@@ -75,40 +75,46 @@ void				learn_weapon(t_duel *duel, char *sight)
 
 	pieces = 0;
 	sight_tmp = sight;
-	while (!(ft_isdigit(*sight)))
-		sight++;
+	while (!(ft_isdigit(*sight_tmp)))
+		sight_tmp++;
 	dprintf(duel->log_file, "weapon ft_0\n");
-	weapon_y = ft_atoi(sight);
-	while (ft_isdigit(*sight))
-		sight++;
-	sight++;
+	weapon_y = ft_atoi(sight_tmp);
+	while (ft_isdigit(*sight_tmp))
+		sight_tmp++;
+	sight_tmp++;
 	dprintf(duel->log_file, "weapon ft_1\n");
-	weapon_x = ft_atoi(sight);
+	weapon_x = ft_atoi(sight_tmp);
 	// ft_printf("MALLOC 6\n");//label every malloc
 	duel->weapon = ft_2dintarray(weapon_y + 1, weapon_x);
 	duel->weapon[0][0] = weapon_y + 1;
 	duel->weapon[0][1] = weapon_x;
 	dprintf(duel->log_file, "weapon ft_2\n");
+	dprintf(duel->log_file, "Before weapon read loop:%s\n", sight);
+	ft_memdel((void**)&sight); //added in during gnl memory management fix push
 	weapon_y = 1;
-	ft_memdel((void**)&sight_tmp); //added in during gnl memory management fix push
 	while (weapon_y < duel->weapon[0][0])
 	{
+		dprintf(duel->log_file, "top of weapon loop\n");
 		weapon_x = 0;
 		// ft_printf("MALLOC 7\n");//label every malloc
-		get_next_line(duel->fd, &sight);
+		dprintf(duel->log_file, "above gnl\n");
+		get_next_line(duel->fd, &sight);// <--- here is where it gets stuck... BUT WHY
+		dprintf(duel->log_file, "below gnl\n");
 		sight_tmp = sight;
+		dprintf(duel->log_file, "WEAPON READ LOOP:%s\n", sight);
+		dprintf(duel->log_file, "WEAPON READ LOOP TMP:%s\n", sight_tmp);
 		while (weapon_x < duel->weapon[0][1])
 		{
 			dprintf(duel->log_file, "weapon ft_3\n");
-			duel->weapon[weapon_y][weapon_x] = (*sight == '*') ? 1 : 0;
+			duel->weapon[weapon_y][weapon_x] = (*sight_tmp == '*') ? 1 : 0;
 			pieces = (duel->weapon[weapon_y][weapon_x] == 1) ? pieces + 1 : pieces;
 			weapon_x++;
-			sight++;
+			sight_tmp++;
 			//compact here when working
 		}
 		weapon_y++;
 		dprintf(duel->log_file, "weapon_y%d, duel->weapon[0][0]%d\n", weapon_y, duel->weapon[0][0]);
-		ft_memdel((void**)&sight_tmp); //added in during gnl memory management fix push
+		ft_memdel((void**)&sight); //added in during gnl memory management fix push
 	}
 	dprintf(duel->log_file, "weapon ft_4\n");
 	duel->weapon[0][2] = pieces;
@@ -121,7 +127,7 @@ void				perceive(t_duel *duel, char *sight)
 
 	while (get_next_line(duel->fd, &sight) > 0)
 	{
-	
+		dprintf(duel->log_file, "PERCIEVE LOOOP:%s\n", sight);
 		if (ft_strstr(sight, "Plateau") && duel->arena == NULL)
 		{
 			observe_arena(duel, sight);
