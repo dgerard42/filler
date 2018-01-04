@@ -27,6 +27,7 @@ void				score_map(t_duel *duel, int start_x, int start_y, int x_inc, int y_inc)
 			y += y_inc;
 			x += x_inc;
 		}
+		
 	}
 }
 
