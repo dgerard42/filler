@@ -91,6 +91,7 @@ void				learn_weapon(t_duel *duel, char *sight)
 	dprintf(duel->log_file, "weapon ft_2\n");
 	dprintf(duel->log_file, "Before weapon read loop:%s\n", sight);
 	ft_memdel((void**)&sight); //added in during gnl memory management fix push
+	// free(sight);
 	weapon_y = 1;
 	while (weapon_y < duel->weapon[0][0])
 	{
@@ -114,6 +115,7 @@ void				learn_weapon(t_duel *duel, char *sight)
 		}
 		weapon_y++;
 		dprintf(duel->log_file, "weapon_y%d, duel->weapon[0][0]%d\n", weapon_y, duel->weapon[0][0]);
+		// free(sight);
 		ft_memdel((void**)&sight); //added in during gnl memory management fix push
 	}
 	dprintf(duel->log_file, "weapon ft_4\n");

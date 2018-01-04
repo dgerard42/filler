@@ -64,8 +64,8 @@ int					read_test_file(t_duel *duel) //for early in development
 {
 	int fd;
 
-	// fd = open("resources/test_outputs/output_5.txt", O_RDONLY);
-	fd = STDIN_FILENO;
+	fd = open("resources/test_outputs/output_9.txt", O_RDONLY);
+	// fd = STDIN_FILENO;
 	duel->log_file = open("log_files/log_0.txt", O_CREAT | O_WRONLY | O_TRUNC);
 	dprintf(duel->log_file, "LOG FILE WORKS 42\n");
 	dprintf(duel->log_file, ".      OOOOOOOOOOOOOOOO     \n    OO..***.......***.....OO         .   +\n    OO.....***********........OO\n  OO......**********...........OO        +      .    .\n OO.........****...*............OO\n  O............**.................O      +    .\n O...........*******.............O                +\n  O..........*********............O\n OO.........********............OO        .     .\n  OO.........*****.............OO    +               +\n   OO........***.............OO               +\n +   OO.......**...........OO      .\n   .     OOOOOOOOOOOOOOOO                             +\n");
@@ -95,4 +95,5 @@ int					main(void)
 	ft_memdel((void**)&duel.move);
 	ft_memdel((void**)&duel.risk);
 	close(duel.fd); //again, rm at end
+	close(duel.log_file);
 }

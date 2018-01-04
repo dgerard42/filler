@@ -12,7 +12,25 @@
 
 # include "filler.h"
 
-//VVVV compress this shit. Eventually. VVVVV
+
+void				score_map(t_duel *duel, int start_x, int start_y, int x_inc, int y_inc)
+{
+	int x;
+	int y;
+
+	x = start_x;
+	y = start_y;
+	while (y >= 0 && x >= 0 && y < duel->arena_x && x < duel->arena_y)
+	{
+		if (duel->arena[y][x] == -1 || duel->arena[y][x] == -2)
+		{
+			y += y_inc;
+			x += x_inc;
+		}
+	}
+}
+
+
 void				assess_weaknesses(t_duel *duel, int start_x, int start_y) //assign the correct number to the map spot
 {
 	int		x;
@@ -27,7 +45,7 @@ void				assess_weaknesses(t_duel *duel, int start_x, int start_y) //assign the c
 		duel->risk[0] = duel->arena_y;
 	x = start_x;
 	y = start_y;
-	while (y > 0 && duel->risk[4] == 0)
+	while (y >= 0 && duel->risk[4] == 0)
 		if (duel->arena[y][x] == -1 || duel->arena[y--][x] == -2)
 			duel->risk[4] = (duel->arena[y][x] == -2) ? start_y - y + 3 : start_y - y + 1;
 	if (duel->risk[4] == 0)
@@ -41,7 +59,7 @@ void				assess_weaknesses(t_duel *duel, int start_x, int start_y) //assign the c
 		duel->risk[2] = duel->arena_x;
 	x = start_x;
 	y = start_y;
-	while (x > 0 && duel->risk[6] == 0)
+	while (x >= 0 && duel->risk[6] == 0)
 		if (duel->arena[y][x] == -1 || duel->arena[y][x--] == -2)
 			duel->risk[6] = (duel->arena[y][x] == -2) ? start_x - x + 3 : start_x - x + 1;
 	if (duel->risk[6] == 0)
@@ -55,21 +73,21 @@ void				assess_weaknesses(t_duel *duel, int start_x, int start_y) //assign the c
 		duel->risk[1] = duel->arena_y;
 	x = start_x;
 	y = start_y;
-	while (y > 0 && x < duel->arena_x && duel->risk[3] == 0)
+	while (y >= 0 && x < duel->arena_x && duel->risk[3] == 0)
 		if (duel->arena[y][x] == -1 || duel->arena[y--][x++] == -2)
 			duel->risk[3] = (duel->arena[y][x] == -2) ? x - start_x + 3 : x - start_x + 1;
 	if (duel->risk[3] == 0)
 		duel->risk[3] = duel->arena_x;
 	x = start_x;
 	y = start_y;
-	while (y > 0 && x > 0 && duel->risk[5] == 0)
+	while (y >= 0 && x >= 0 && duel->risk[5] == 0)
 		if (duel->arena[y][x] == -1 || duel->arena[y--][x--] == -2)
 			duel->risk[5] = (duel->arena[y][x] == -2) ? start_x - x + 3 : start_x - x + 1;
 	if (duel->risk[5] == 0)
 		duel->risk[5] = duel->arena_x;
 	x = start_x;
 	y = start_y;
-	while (y < duel->arena_y && x > 0 && duel->risk[7] == 0)
+	while (y < duel->arena_y && x >= 0 && duel->risk[7] == 0)
 		if (duel->arena[y][x] == -1 || duel->arena[y++][x--] == -2)
 			duel->risk[7] = (duel->arena[y][x] == -2) ? y - start_y + 3 : y - start_y + 1;
 	if (duel->risk[7] == 0)

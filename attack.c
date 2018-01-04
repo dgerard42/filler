@@ -19,7 +19,7 @@ int				check_fit(t_duel *duel, t_move *move, int delta_x, int delta_y) //check m
 
 	check_x = move->map_x + delta_x;
 	check_y = move->map_y + delta_y;
-	if (check_x < 0 || check_x > duel->arena_x || check_y < 0 || check_y > duel->arena_y)
+	if (check_x < 0 || (check_x > duel->arena_x - 1) || check_y < 0 || (check_y > duel->arena_y - 1))
 		return (0);
 	if (delta_x == 0 && delta_y == 0 && duel->arena[check_y][check_x] == -42)
 		return (42);
