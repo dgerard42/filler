@@ -28,8 +28,10 @@ typedef struct		s_duel
 	char	enemy;
 	int		*move; //3 ints, x, y, and score
 	int		*risk; //initialize at -1 for all numbers b/c 0 can be valid value, 7 ints
+	int		start_x;
+	int		start_y;
 	int		fd;		//rm in the final version
-	int		log_file;
+	int		log_file; //rm in final version
 	// int	turn; //use this to determine turn? 0 = not mine 1 = mine 2 = FIN
 }					t_duel;
 
