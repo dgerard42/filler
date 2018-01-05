@@ -140,6 +140,6 @@ void				attack(t_duel *duel) //find an open spot on the edge of my colonized spa
 		}
 		y++;
 	}
+	dprintf(duel->log_file, "MOOVE coords [%d, %d]\n", duel->move[1], duel->move[0]);
 	ft_printf("%d %d\n", duel->move[1], duel->move[0]);
-	// duel->turn = 0;
 }

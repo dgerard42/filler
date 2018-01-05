@@ -52,5 +52,4 @@ void				check_perceptions(t_duel *duel);//rm at end
 #endif
 
 //	CURRENT TASK
-//	investigate the possibility of off by one placing on the weapon_y
-// make sure that the top left spot is always the anchor
+// find out why large maps aren't working

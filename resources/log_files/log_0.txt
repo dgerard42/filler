@@ -12,3 +12,14 @@ LOG FILE WORKS 42
    OO........***.............OO               +
  +   OO.......**...........OO      .
    .     OOOOOOOOOOOOOOOO                             +
+uve read the enemy and warrior
+PERCIEVE LOOOP:Plateau 100 99:
+uve malloced for the arena
+PERCIEVE LOOOP:    012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678
+PERCIEVE LOOOP:000 ...................................................................................................
+uve observed the arena
+PERCIEVE LOOOP:Piece 13 5:
+uve learned the weapon
+uve filled the heatmap
+MOOVE coords [0, 0]
+uve placed the piece. congrats.
