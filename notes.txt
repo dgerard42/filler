@@ -122,3 +122,9 @@ ___________________________MAP KEY___________________________
 ~ taken by the opponent is -2
 ~ recently taken by opponent is -1
 ~ calibration value before reward calculation is 0
+
+//	CURRENT TASKS
+// check the heatmap for abnormalities. negative numbers where there shouldn't be any.
+// figure out why it's crashing occasionally.
+// remove the -2 -1 differentiation if it's not useful.
+// tweak favoring enemy over getting away from yourself, to try to beat carli

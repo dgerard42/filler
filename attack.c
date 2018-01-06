@@ -127,19 +127,19 @@ void				attack(t_duel *duel) //find an open spot on the edge of my colonized spa
 	int		anchor_score;
 
 	y = 0;
-	duel->move[2] = 4200;
+	duel->move[2] = 2147483647;
 	while (y < duel->arena_y)
 	{
 		x = 0;
 		while (x < duel->arena_x)
 		{
 			if (duel->arena[y][x] == -42 && check_adj(duel, x, y))
-				if ((anchor_score = find_opening(duel, x, y)) != 0 && duel->move[2] > anchor_score)
+				if ((anchor_score = find_opening(duel, x, y)) != 0 && duel->move[2] >= anchor_score)
 					duel->move[2] = anchor_score;
 			x++;
 		}
 		y++;
 	}
-	dprintf(duel->log_file, "MOOVE coords [%d, %d]\n", duel->move[1], duel->move[0]);
 	ft_printf("%d %d\n", duel->move[1], duel->move[0]);
+	dprintf(duel->log_file, "MOVE %d, %d, %d\n", duel->move[0], duel->move[1],duel->move[2]);
 }

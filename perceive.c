@@ -110,31 +110,30 @@ void				perceive(t_duel *duel, char *sight)
 
 	while (get_next_line(duel->fd, &sight) > 0)
 	{
-		dprintf(duel->log_file, "PERCIEVE LOOOP:%s\n", sight);
+		// dprintf(duel->log_file, "PERCIEVE LOOOP:%s\n", sight);
 		if (ft_strstr(sight, "Plateau") && duel->arena == NULL)
 		{
 			observe_arena(duel, sight);
-			dprintf(duel->log_file, "uve malloced for the arena\n");
+			// dprintf(duel->log_file, "uve malloced for the arena\n");
 		}
 		else if (ft_strstr(sight, "000"))
 		{
 			watch_enemy(duel, sight);
-			dprintf(duel->log_file, "uve observed the arena\n");
+			// dprintf(duel->log_file, "uve observed the arena\n");
 		}
 		else if (ft_strstr(sight, "Piece"))
 		{
 			learn_weapon(duel, sight);
-			dprintf(duel->log_file, "uve learned the weapon\n");
+			// dprintf(duel->log_file, "uve learned the weapon\n");
 			plan(duel);
-			dprintf(duel->log_file, "uve filled the heatmap\n");
+			// dprintf(duel->log_file, "uve filled the heatmap\n");
 			attack(duel);
-			dprintf(duel->log_file, "uve placed the piece. congrats.\n");
+			// dprintf(duel->log_file, "uve placed the piece. congrats.\n");
 			// check_perceptions(duel);
 			weapon_y = duel->weapon[0][0];
 			ft_2dfreearray((void**)duel->weapon, weapon_y);
 			duel->move[0] = 0;// ur prolly fine w/o these
 			duel->move[1] = 0;
-			duel->move[2] = 0;
 		}
 		else
 			ft_memdel((void**)&sight); //added in during gnl memory management fix pushs

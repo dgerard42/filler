@@ -64,11 +64,11 @@ int					read_test_file(t_duel *duel) //for early in development
 {
 	int fd;
 
-	// fd = open("resources/test_outputs/output_4.txt", O_RDONLY);
+	// fd = open("resources/test_outputs/output_2.txt", O_RDONLY);
 	fd = STDIN_FILENO;
 	duel->log_file = open("log_files/log_0.txt", O_CREAT | O_WRONLY | O_TRUNC);
 	dprintf(duel->log_file, "LOG FILE WORKS 42\n");
-	dprintf(duel->log_file, ".      OOOOOOOOOOOOOOOO     \n    OO..***.......***.....OO         .   +\n    OO.....***********........OO\n  OO......**********...........OO        +      .    .\n OO.........****...*............OO\n  O............**.................O      +    .\n O...........*******.............O                +\n  O..........*********............O\n OO.........********............OO        .     .\n  OO.........*****.............OO    +               +\n   OO........***.............OO               +\n +   OO.......**...........OO      .\n   .     OOOOOOOOOOOOOOOO                             +\n");
+	// dprintf(duel->log_file, ".      OOOOOOOOOOOOOOOO     \n    OO..***.......***.....OO         .   +\n    OO.....***********........OO\n  OO......**********...........OO        +      .    .\n OO.........****...*............OO\n  O............**.................O      +    .\n O...........*******.............O                +\n  O..........*********............O\n OO.........********............OO        .     .\n  OO.........*****.............OO    +               +\n   OO........***.............OO               +\n +   OO.......**...........OO      .\n   .     OOOOOOOOOOOOOOOO                             +\n");
 	return(fd);
 }
 
@@ -88,7 +88,7 @@ int					main(void)
 		duel.enemy = (sight[10] == '2') ? 'O' : 'X';
 		duel.warrior = (sight[10] == '2') ? 'X' : 'O';
 	}
-	dprintf(duel.log_file, "uve read the enemy and warrior\n");
+	// dprintf(duel.log_file, "uve read the enemy and warrior\n");
 	ft_memdel((void**)&sight); //added in during gnl memory management fix push
 	perceive(&duel, sight);
 	ft_2dfreearray((void**)duel.arena, duel.arena_y);

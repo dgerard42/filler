@@ -50,6 +50,3 @@ void				attack(t_duel *duel);
 void				check_perceptions(t_duel *duel);//rm at end
 
 #endif
-
-//	CURRENT TASK
-// find out why large maps aren't working

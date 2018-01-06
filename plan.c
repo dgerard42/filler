@@ -22,7 +22,15 @@ void				score_map_x(t_duel *duel, int x_inc, int y_inc, int risk_index)
 	while (y >= 0 && x >= 0 && y < duel->arena_y && x < duel->arena_x)
 	{
 		if (duel->arena[y][x] == -1 || duel->arena[y][x] == -2)
-			duel->risk[risk_index] = (duel->arena[y][x] == -2) ? y - duel->start_x + 3 : y - duel->start_x + 1;
+		{
+			duel->risk[risk_index] = (duel->arena[y][x] == -2) ? x - duel->start_x + 3 : x - duel->start_x + 1;
+			break;
+		}
+		else if (duel->arena[y][x] == -42)
+		{
+			duel->risk[risk_index] = duel->arena_x * 2;
+			break;
+		}
 		y += y_inc;
 		x += x_inc;
 	}
@@ -40,7 +48,17 @@ void				score_map_y(t_duel *duel, int x_inc, int y_inc, int risk_index)
 	while (y >= 0 && x >= 0 && y < duel->arena_y && x < duel->arena_x)
 	{
 		if (duel->arena[y][x] == -1 || duel->arena[y][x] == -2)
+		{
 			duel->risk[risk_index] = (duel->arena[y][x] == -2) ? y - duel->start_y + 3 : y - duel->start_y + 1;
+			if (duel->arena[y][x] == -1)
+				dprintf(duel->log_file, "YES, it's useful\n");
+			break; //first change
+		}
+		else if (duel->arena[y][x] == -42)
+		{
+			duel->risk[risk_index] = duel->arena_y * 2; //second change *2
+			break;
+		}
 		y += y_inc;
 		x += x_inc;
 	}
