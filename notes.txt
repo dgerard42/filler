@@ -128,3 +128,5 @@ ___________________________MAP KEY___________________________
 // figure out why it's crashing occasionally.
 // remove the -2 -1 differentiation if it's not useful.
 // tweak favoring enemy over getting away from yourself, to try to beat carli
+
+idea -- traversing from the bottom up would be very unexpected

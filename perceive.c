@@ -27,11 +27,10 @@ void	watch_enemy(t_duel *duel, char *sight)
 				duel->arena[y][x] = 0;
 			else if (sight[x + 4] == duel->enemy)
 				duel->arena[y][x] = -2;
-			else if (sight[x + 4] == ft_tolower(duel->enemy))
-				duel->arena[y][x] = -1;
+			// else if (sight[x + 4] == ft_tolower(duel->enemy))
+				// duel->arena[y][x] = -1;
 			else if (sight[x + 4] == duel->warrior || ft_tolower(duel->warrior))
 				duel->arena[y][x] = -42;
-			//make these elifs more or less detailed depending on what your algorithim eventually needs
 			x++;
 		}
 		y++;
