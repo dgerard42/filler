@@ -21,8 +21,8 @@ void				score_map_x(t_duel *duel, int x_inc, int y_inc, int risk_index)
 	y = duel->start_y;
 	while (y >= 0 && x >= 0 && y < duel->arena_y && x < duel->arena_x)
 	{
-		if (duel->arena[y][x] == -1 || duel->arena[y][x] == -2)
-			duel->risk[risk_index] = (duel->arena[y][x] == -2) ? x - duel->start_x + 3 : x - duel->start_x + 1;
+		if (duel->arena[y][x] == -2)
+			duel->risk[risk_index] = x - duel->start_x + 1;
 		else if (duel->arena[y][x] == -42)
 			duel->risk[risk_index] = duel->arena_x * 2;
 		if (duel->arena[y][x] < 0)
@@ -43,8 +43,8 @@ void				score_map_y(t_duel *duel, int x_inc, int y_inc, int risk_index)
 	y = duel->start_y;
 	while (y >= 0 && x >= 0 && y < duel->arena_y && x < duel->arena_x)
 	{
-		if (duel->arena[y][x] == -1 || duel->arena[y][x] == -2)
-			duel->risk[risk_index] = (duel->arena[y][x] == -2) ? y - duel->start_y + 3 : y - duel->start_y + 1;
+		if (duel->arena[y][x] == -2)
+			duel->risk[risk_index] = y - duel->start_y + 1;
 		else if (duel->arena[y][x] == -42)
 			duel->risk[risk_index] = duel->arena_y * 2;
 		if (duel->arena[y][x] < 0)
@@ -68,7 +68,7 @@ void				assess_weaknesses(t_duel *duel)
 	score_map_x(duel, 1 , -1, 3);
 }
 
-void				plan(t_duel *duel)// go through the map, and if not colonized by me, re-assess number
+void				plan(t_duel *duel)
 {
 	int		y;
 	int		x;

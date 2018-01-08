@@ -29,7 +29,7 @@ int				check_fit(t_duel *duel, t_move *move, int delta_x, int delta_y) //check m
 		return (0);
 }
 
-int				check_shape(t_duel *duel, t_move *move) //cycle through the rest of the piece and check fit & score
+int				check_shape(t_duel *duel, t_move *move)
 {
 	int		x;
 	int		y;
@@ -53,7 +53,6 @@ int				check_shape(t_duel *duel, t_move *move) //cycle through the rest of the p
 			{
 				if (duel->weapon[y][x] == 1)
 				{
-					//minus 1 on y below here fuckin wit stuff
 					if ((anchor_inc = check_fit(duel, move, x - move->weapon_x, y - move->weapon_y)) != 0)
 						anchor_score += anchor_inc;
 					else
@@ -69,7 +68,7 @@ int				check_shape(t_duel *duel, t_move *move) //cycle through the rest of the p
 	return(anchor_score);
 }
 
-int					find_opening(t_duel *duel, int map_x, int map_y) //cycle through 1s in the weapon as potential anchors to the map spots
+int					find_opening(t_duel *duel, int map_x, int map_y)
 {
 	t_move	move;
 	int		x;
@@ -120,7 +119,7 @@ int					check_adj(t_duel *duel, int x, int y)
 	return (0);
 }
 
-void				attack(t_duel *duel) //find an open spot on the edge of my colonized space
+void				attack(t_duel *duel)
 {
 	int		y;
 	int		x;
@@ -141,5 +140,4 @@ void				attack(t_duel *duel) //find an open spot on the edge of my colonized spa
 		y++;
 	}
 	ft_printf("%d %d\n", duel->move[1], duel->move[0]);
-	dprintf(duel->log_file, "MOVE %d, %d, %d\n", duel->move[0], duel->move[1],duel->move[2]);
 }

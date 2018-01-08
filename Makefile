@@ -12,7 +12,7 @@
 
 NAME = dgerard.filler
 
-FLAGS = -Wall -Werror -Wextra -g
+FLAGS = -Wall -Werror -Wextra
 
 LIBFT = libft/libft.a\
 
@@ -22,7 +22,6 @@ SRCS =	main.c\
 		perceive.c\
 		plan.c\
 		attack.c\
-		# kane_alloc_wrap.c\
 
 ODIR = ofiles
 
@@ -31,11 +30,6 @@ OFILES = $(addprefix $(ODIR)/,$(SRCS:.c=.o))
 $(ODIR)/%.o: %.c
 	@gcc $(FLAGS) -c $^ -o $@
 	@/bin/echo -n "❂❂❂❂"
-
-#are both of these nessecary though? ^ && v ?
-%.o: %.c
-	@gcc $(FLAGS) -c $^ -o $@
-	@/bin/echo -n "❂❂❂❂❂"
 
 all: $(NAME)
 

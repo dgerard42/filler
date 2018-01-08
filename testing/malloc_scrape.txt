@@ -1,0 +1,184 @@
+MALLOC 0
+malloc(224) = 0x7fe390402850
+MALLOC 1
+malloc(96) = 0x7fe390402950
+MALLOC 2
+malloc(104) = 0x7fe3904029b0
+malloc(13) = 0x7fe390400350
+free(0x7fe3904029b0)
+malloc(25) = 0x7fe390402930
+free(0x7fe390400350)
+malloc(37) = 0x7fe3904029b0
+free(0x7fe390402930)
+malloc(49) = 0x7fe3904029e0
+free(0x7fe3904029b0)
+malloc(312) = 0x7fe390402a20
+free(0x7fe390402a20)
+MALLOC 3
+malloc(22) = 0x7fe390402930
+free(0x7fe3904029e0)
+malloc(120) = 0x7fe390402a20
+MALLOC 4
+malloc(1024) = 0x7fe390801000 <-------------
+malloc(544) = 0x7fe390402b60
+malloc(544) = 0x7fe390402d80
+malloc(544) = 0x7fe390402fa0
+malloc(544) = 0x7fe3904031c0
+malloc(544) = 0x7fe3904033e0
+malloc(544) = 0x7fe390403600
+malloc(544) = 0x7fe390403820
+malloc(544) = 0x7fe390403a40
+malloc(544) = 0x7fe390403c60
+malloc(544) = 0x7fe390403e80
+malloc(544) = 0x7fe3904040a0
+malloc(544) = 0x7fe3904042c0
+malloc(544) = 0x7fe3904044e0
+malloc(544) = 0x7fe390404700
+malloc(544) = 0x7fe390404920
+free(0x7fe390402a20)
+malloc(19) = 0x7fe3904029b0
+free(0x7fe390402930)
+malloc(31) = 0x7fe390402930
+free(0x7fe3904029b0)
+malloc(152) = 0x7fe3904029d0
+free(0x7fe3904029d0)
+malloc(24) = 0x7fe3904029b0
+free(0x7fe390402930)
+malloc(176) = 0x7fe3904029d0
+free(0x7fe3904029d0)
+MALLOC 5
+malloc(14) = 0x7fe390400350
+free(0x7fe3904029b0)
+malloc(26) = 0x7fe3904029b0
+free(0x7fe390400350)
+malloc(176) = 0x7fe3904029d0
+free(0x7fe3904029d0)
+MALLOC 5
+malloc(16) = 0x7fe390500000
+free(0x7fe3904029b0)
+malloc(28) = 0x7fe390500010
+free(0x7fe390500000)
+malloc(176) = 0x7fe390500030
+free(0x7fe390500030)
+MALLOC 5
+malloc(18) = 0x7fe390600000
+free(0x7fe390500010)
+malloc(30) = 0x7fe390600020
+free(0x7fe390600000)
+malloc(176) = 0x7fe390600040
+free(0x7fe390600040)
+MALLOC 5
+malloc(20) = 0x7fe390600000
+free(0x7fe390600020)
+malloc(32) = 0x7fe390600020
+free(0x7fe390600000)
+malloc(176) = 0x7fe390600040
+free(0x7fe390600040)
+MALLOC 5
+malloc(22) = 0x7fe390600000
+free(0x7fe390600020)
+malloc(34) = 0x7fe390600040
+free(0x7fe390600000)
+malloc(176) = 0x7fe3906000f0
+free(0x7fe3906000f0)
+MALLOC 5
+malloc(24) = 0x7fe390600000
+free(0x7fe390600040)
+malloc(176) = 0x7fe390600070
+free(0x7fe390600070)
+MALLOC 5
+malloc(14) = 0x7fe390600020
+free(0x7fe390600000)
+malloc(26) = 0x7fe390600000
+free(0x7fe390600020)
+malloc(176) = 0x7fe390600030
+free(0x7fe390600030)
+MALLOC 5
+malloc(16) = 0x7fe390600020
+free(0x7fe390600000)
+malloc(28) = 0x7fe390600000
+free(0x7fe390600020)
+malloc(176) = 0x7fe390600030
+free(0x7fe390600030)
+MALLOC 5
+malloc(18) = 0x7fe3906000e0
+free(0x7fe390600000)
+malloc(30) = 0x7fe390600000
+free(0x7fe3906000e0)
+malloc(176) = 0x7fe390600020
+free(0x7fe390600020)
+MALLOC 5
+malloc(20) = 0x7fe3906000d0
+free(0x7fe390600000)
+malloc(32) = 0x7fe390600000
+free(0x7fe3906000d0)
+malloc(176) = 0x7fe390600020
+free(0x7fe390600020)
+MALLOC 5
+malloc(22) = 0x7fe3906000d0
+free(0x7fe390600000)
+malloc(34) = 0x7fe390600020
+free(0x7fe3906000d0)
+malloc(176) = 0x7fe3906000f0
+free(0x7fe3906000f0)
+MALLOC 5
+malloc(24) = 0x7fe3904029b0
+free(0x7fe390600020)
+malloc(176) = 0x7fe3904029d0
+free(0x7fe3904029d0)
+MALLOC 5
+malloc(14) = 0x7fe390400350
+free(0x7fe3904029b0)
+malloc(26) = 0x7fe3904029b0
+free(0x7fe390400350)
+malloc(176) = 0x7fe3904029d0
+free(0x7fe3904029d0)
+MALLOC 5
+malloc(16) = 0x7fe390400350
+free(0x7fe3904029b0)
+malloc(28) = 0x7fe3904029b0
+free(0x7fe390400350)
+malloc(176) = 0x7fe3904029d0
+free(0x7fe3904029d0)
+malloc(18) = 0x7fe390402930
+free(0x7fe3904029b0)
+malloc(88) = 0x7fe3904029d0
+MALLOC 6
+malloc(256) = 0x7fe390402a30 <----------
+malloc(96) = 0x7fe390404b40
+malloc(96) = 0x7fe390404ba0
+malloc(96) = 0x7fe390404c00
+free(0x7fe3904029d0)
+MALLOC 7
+malloc(9) = 0x7fe390400350
+free(0x7fe390402930)
+malloc(32) = 0x7fe390402930
+free(0x7fe390402930)
+MALLOC 7
+malloc(32) = 0x7fe390402930
+free(0x7fe390402930)
+7 0
+3
+free(0x7fe390404b40)
+free(0x7fe390404ba0)
+free(0x7fe390404c00)
+free(0x0)
+free(0x7fe390400350)
+free(0x7fe390402b60)
+free(0x7fe390402d80)
+free(0x7fe390402fa0)
+free(0x7fe3904031c0)
+free(0x7fe3904033e0)
+free(0x7fe390403600)
+free(0x7fe390403820)
+free(0x7fe390403a40)
+free(0x7fe390403c60)
+free(0x7fe390403e80)
+free(0x7fe3904040a0)
+free(0x7fe3904042c0)
+free(0x7fe3904044e0)
+free(0x7fe390404700)
+free(0x7fe390404920)
+free(0x0)
+free(0x7fe390402950)
+free(0x7fe390402850)

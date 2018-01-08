@@ -15,8 +15,6 @@
 
 # include "libft/libft.h"
 # include "printf/ft_printf.h"
-# include <fcntl.h> //rm in the final version, using for open
-# include <stdio.h> //rm at end for dprintf for log file
 
 typedef struct		s_duel
 {
@@ -26,13 +24,10 @@ typedef struct		s_duel
 	int		**weapon;
 	char	warrior;
 	char	enemy;
-	int		*move; //3 ints, x, y, and score
-	int		*risk; //initialize at -1 for all numbers b/c 0 can be valid value, 7 ints
+	int		*move;
+	int		*risk;
 	int		start_x;
 	int		start_y;
-	int		fd;		//rm in the final version
-	int		log_file; //rm in final version
-	// int	turn; //use this to determine turn? 0 = not mine 1 = mine 2 = FIN
 }					t_duel;
 
 typedef	struct		s_move
@@ -47,6 +42,5 @@ typedef	struct		s_move
 void				perceive(t_duel *duel, char *sight);
 void				plan(t_duel *duel);
 void				attack(t_duel *duel);
-void				check_perceptions(t_duel *duel);//rm at end
 
 #endif
