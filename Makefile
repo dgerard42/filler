@@ -22,6 +22,7 @@ SRCS =	main.c\
 		perceive.c\
 		plan.c\
 		attack.c\
+		confirm.c\
 
 ODIR = ofiles
 

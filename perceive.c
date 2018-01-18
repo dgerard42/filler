@@ -6,13 +6,13 @@
 /*   By: dgerard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 17:17:56 by dgerard           #+#    #+#             */
-/*   Updated: 2017/11/07 17:17:58 by dgerard          ###   ########.fr       */
+/*   Updated: 2018/01/17 21:25:02 by dgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "filler.h"
+#include "filler.h"
 
-void	watch_enemy(t_duel *duel, char *sight)
+void			watch_enemy(t_duel *duel, char *sight)
 {
 	int x;
 	int	y;
@@ -41,7 +41,7 @@ void	watch_enemy(t_duel *duel, char *sight)
 	ft_memdel((void**)&sight);
 }
 
-void				observe_arena(t_duel *duel, char *sight)
+void			observe_arena(t_duel *duel, char *sight)
 {
 	char	*sight_tmp;
 
@@ -57,46 +57,55 @@ void				observe_arena(t_duel *duel, char *sight)
 	ft_memdel((void**)&sight_tmp);
 }
 
-void				learn_weapon(t_duel *duel, char *sight)
+void			learn_weap_coords(t_duel *duel, char *sight, t_move *move)
 {
-	int		weapon_x;
-	int		weapon_y;
+	char	*sight_tmp;
+
+	sight_tmp = sight;
+	while (!(ft_isdigit(*sight_tmp)))
+		sight_tmp++;
+	move->weapon_y = ft_atoi(sight_tmp);
+	while (ft_isdigit(*sight_tmp))
+		sight_tmp++;
+	sight_tmp++;
+	move->weapon_x = ft_atoi(sight_tmp);
+	move->weapon_x = ft_atoi(sight_tmp);
+	duel->weapon = ft_2dintarray(move->weapon_y + 1, move->weapon_x);
+	duel->weapon[0][0] = move->weapon_y + 1;
+	duel->weapon[0][1] = move->weapon_x;
+	ft_memdel((void**)&sight);
+}
+
+void			learn_weapon(t_duel *duel, char *sight)
+{
+	t_move	move;
 	int		pieces;
 	char	*sight_tmp;
 
 	pieces = 0;
-	sight_tmp = sight;
-	while (!(ft_isdigit(*sight_tmp)))
-		sight_tmp++;
-	weapon_y = ft_atoi(sight_tmp);
-	while (ft_isdigit(*sight_tmp))
-		sight_tmp++;
-	sight_tmp++;
-	weapon_x = ft_atoi(sight_tmp);
-	duel->weapon = ft_2dintarray(weapon_y + 1, weapon_x);
-	duel->weapon[0][0] = weapon_y + 1;
-	duel->weapon[0][1] = weapon_x;
-	ft_memdel((void**)&sight);
-	weapon_y = 1;
-	while (weapon_y < duel->weapon[0][0])
+	learn_weap_coords(duel, sight, &move);
+	move.weapon_y = 1;
+	while (move.weapon_y < duel->weapon[0][0])
 	{
-		weapon_x = 0;
+		move.weapon_x = 0;
 		get_next_line(STDIN_FILENO, &sight);
 		sight_tmp = sight;
-		while (weapon_x < duel->weapon[0][1])
+		while (move.weapon_x < duel->weapon[0][1])
 		{
-			duel->weapon[weapon_y][weapon_x] = (*sight_tmp == '*') ? 1 : 0;
-			pieces = (duel->weapon[weapon_y][weapon_x] == 1) ? pieces + 1 : pieces;
-			weapon_x++;
+			duel->weapon[move.weapon_y][move.weapon_x] =
+				(*sight_tmp == '*') ? 1 : 0;
+			pieces = (duel->weapon[move.weapon_y][move.weapon_x] == 1) ?
+				pieces + 1 : pieces;
+			move.weapon_x++;
 			sight_tmp++;
 		}
-		weapon_y++;
+		move.weapon_y++;
 		ft_memdel((void**)&sight);
 	}
 	duel->weapon[0][2] = pieces;
 }
 
-void				perceive(t_duel *duel, char *sight)
+void			perceive(t_duel *duel, char *sight)
 {
 	int		weapon_y;
 

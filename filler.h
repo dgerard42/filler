@@ -42,5 +42,6 @@ typedef	struct		s_move
 void				perceive(t_duel *duel, char *sight);
 void				plan(t_duel *duel);
 void				attack(t_duel *duel);
+int					check_shape(t_duel *duel, t_move *move);
 
 #endif

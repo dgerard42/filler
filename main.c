@@ -6,11 +6,11 @@
 /*   By: dgerard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 17:15:41 by dgerard           #+#    #+#             */
-/*   Updated: 2017/11/07 17:15:44 by dgerard          ###   ########.fr       */
+/*   Updated: 2018/01/17 21:21:08 by dgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "filler.h"
+#include "filler.h"
 
 void				begin(t_duel *duel)
 {
