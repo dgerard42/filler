@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   confirm.c                                           :+:      :+:    :+:   */
+/*   confirm.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgerard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/18 00:37:15 by dgerard           #+#    #+#             */
-/*   Updated: 2018/01/18 00:37:16 by dgerard          ###   ########.fr       */
+/*   Created: 2018/01/18 14:16:56 by dgerard           #+#    #+#             */
+/*   Updated: 2018/01/18 14:17:36 by dgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ int				anchor_inc_get(t_duel *duel, t_move *move, int anchor_score)
 {
 	int anchor_inc;
 
-	while (duel->start_x < duel->weapon[0][1] && move->ones < duel->weapon[0][2])
+	while (duel->start_x < duel->weapon[0][1] && move->ones <
+			duel->weapon[0][2])
 	{
 		if (duel->weapon[duel->start_y][duel->start_x] == 1)
 		{
@@ -60,7 +61,8 @@ int				check_shape(t_duel *duel, t_move *move)
 	while (move->ones < duel->weapon[0][2])
 	{
 		duel->start_y = (reset == true) ? 1 : duel->start_y;
-		while (duel->start_y < duel->weapon[0][0] && move->ones < duel->weapon[0][2])
+		while (duel->start_y < duel->weapon[0][0] && move->ones <
+				duel->weapon[0][2])
 		{
 			duel->start_x = (reset == true) ? 0 : duel->start_x;
 			if ((anchor_score = anchor_inc_get(duel, move, anchor_score)) == 0)
